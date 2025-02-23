@@ -21,7 +21,7 @@ const Sidebar = ({showSidebar, setShowSidebar}) => {
       </div>
       {/* this div is for whole sidebar */}
       <div
-        className={`w-[260px] bg-[#ffffff] z-50 h-screen fixed top-2 left-2 bottom-2 right-2
+        className={`w-[250px] bg-[#ffffff] z-50 h-screen fixed top-2 left-2 bottom-2 right-2
          transition-all ${showSidebar?'left-0': '-left-[260px] lg:left-0'} shadow-[0_0_15px_0_rgb(34_41_47_/_5%)] rounded-lg border-r-2`}
       >
         {/* this div is for logo */}
@@ -48,7 +48,7 @@ const Sidebar = ({showSidebar, setShowSidebar}) => {
                   to={name.path}
                   className={`${
                     pathname === name.path
-                      ? "bg-[#3948ab] shadow-md text-[#ffffff] border border-[#3948ab] duration-500"
+                      ? "bg-[#000000] shadow-md text-[#ffffff] border border-[#000000] duration-500"
                       : "text-[#000000] border border-transparent duration-200"
                   } 
                             px-[20px] py-[10px] rounded-lg flex items-center gap-3 
