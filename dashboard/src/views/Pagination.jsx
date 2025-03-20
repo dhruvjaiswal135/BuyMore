@@ -26,8 +26,8 @@ const Pagination = ({pageNumber,setPageNumber,totalItem,perPage,showItem,}) => {
                 <li
                     onClick={() => setPageNumber(i)}
                     className={` ${pageNumber === i
-                            ? "bg-[#3948ab] text-white"
-                            : "bg-white text-gray-400 hover:border border-[#3948ab36] shadow-md hover:text-gray-400 "
+                            ? "bg-[#3948ab] text-white text-xs"
+                            : "bg-white text-gray-400 hover:border text-xs border-[#3948ab36] shadow-md hover:text-gray-400 "
                         }
                 w-[33px] h-[33px] rounded-full flex justify-center items-center cursor-pointer `}
                 >
