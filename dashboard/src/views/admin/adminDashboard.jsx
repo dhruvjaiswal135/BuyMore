@@ -72,7 +72,7 @@ const adminDashboard = () => {
         }
     }
     return (
-        <div className="px-2 md:px-7 py-5 ">
+        <div className="px-2 md:px-7 py-12 ">
             {/* this is the card section */}
             <div
                 className="w-full grid grid-cols-1 sm:grid-cols-2
@@ -95,7 +95,7 @@ const adminDashboard = () => {
                             </div>
                             <img
                                 className="w-[90px]"
-                                src="http://localhost:3001/inc.png"
+                                src="http://localhost:3000/inc.png"
                                 alt="" />
                             {/* <div
                 className="flex w-[40px] h-[47px]
@@ -122,7 +122,7 @@ const adminDashboard = () => {
                             </div>
                             <img
                                 className="w-[90px]"
-                                src="http://localhost:3001/inc.png"
+                                src="http://localhost:3000/inc.png"
                                 alt=""
                             />
                         </div>
@@ -150,7 +150,7 @@ const adminDashboard = () => {
                             </div>
                             <img
                                 className="w-[90px] h-[40px]"
-                                src="http://localhost:3001/loss.png"
+                                src="http://localhost:3000/loss.png"
                                 alt=""
                             />
                         </div>
@@ -174,16 +174,16 @@ const adminDashboard = () => {
                             </div>
                             <img
                                 className="w-[90px]"
-                                src="http://localhost:3001/inc.png"
+                                src="http://localhost:3000/inc.png"
                                 alt=""
                             />
                         </div>
                     </div>
                 </div>
             </div>
-
-            {/* this is the chart section */}
+            
             <div className=" w-full flex flex-wrap mt-7 justify-between">
+                {/* this is the chart section */}
                 <div className="w-full lg:w-9/12 lg:pr-3">
                     <div className="w-full  p-4 rounded-md">
                         <Chart options={state.options} series={state.series}
@@ -202,7 +202,7 @@ const adminDashboard = () => {
                                 {/* this is for admin chat */}
                                 <li>
                                     <div className="flex items-center gap-2 ">
-                                        <img className="w-[35px] rounded-full" src="http://localhost:3001/admin.webp" alt="" />
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/admin.webp" alt="" />
                                         <div className="flex w-full items-center justify-between">
                                             <h2 className="font-medium text-sm">Admin</h2>
                                             <span className="text-xs text-slate-400">16:40</span>
@@ -225,7 +225,7 @@ const adminDashboard = () => {
                                             <span className="text-xs text-slate-400">16:45</span>
                                             <h2 className="font-medium text-sm">Seller</h2>
                                         </div>
-                                        <img className="w-[30px] rounded-full" src="http://localhost:3001/user.png" alt="" />
+                                        <img className="w-[30px] rounded-full" src="http://localhost:3000/user.png" alt="" />
                                     </div>
                                     <div className="p-2 mt-2 bg-[#eefcef] rounded-lg ">
                                         <div className=" text-sm text-end"> Thank You.
@@ -239,17 +239,177 @@ const adminDashboard = () => {
                 </div>
             </div>
 
-            {/* here table starts */}
-            <div className="w-9/12 bg-[#edf6fz] border-b-[1px] mt-6">
-                <div className="flex justify-between items-center pb-3">
+            <div className=" w-full flex flex-wrap justify-between">
+                {/* here table starts */}
+            <div className="w-full lg:w-9/12 bg-[#edf6fz]  mt-2">
+                <div className="flex justify-between items-center pb-3 border-b-[1px]">
                     <h2 className="font-normal text-lg ">Top selling products</h2>
                     <Link className="text-sm font-light">See all</Link>
                 </div>
-
-                <div className="">
+                <div className="relative overflow-x-auto">
+                    <table className="w-full text-sm border-b-[1px] text-center text-[#000000]">
+                        <thead className="text-sm font-light text-[#000000] uppercase border-b-[1px] ">
+                        <tr>
+                            <th scope = 'col' className="px-4 text-xs font-light py-3">Order Id</th>
+                            <th scope = 'col' className="px-4 text-xs py-3 font-light">Product</th>
+                            <th scope = 'col' className="px-4 text-xs py-3 font-light">Category</th>
+                            <th scope = 'col' className="px-4 text-xs py-3 font-light">Price</th>
+                            <th scope = 'col' className="px-4 text-xs py-3 font-light">Payment Status</th>
+                            <th scope = 'col' className="px-4 text-xs py-3 font-light">Active</th>
+                        </tr>
+                        </thead>
+                        {/* table rows */}
+                        <tbody>
+                            <tr className="border-b-[1px]">
+                                <td scope="row" className="py-4 text-[#a0a0a0] px-6 font-normal
+                                whitespace-nowrap">#34543</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Denim Jacket</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Clothing</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">$1400</td>
+                                <td scope="row" className="py-4 text-[#25b727] px-6 font-normal
+                                whitespace-nowrap">Paid</td>
+                                <td scope="row" className="py-4 px-6 font-normal text-[#3848ab]
+                                whitespace-nowrap"><Link>View</Link></td>
+                            </tr>
+                            <tr className="border-b-[1px]">
+                                <td scope="row" className="py-4 text-[#a0a0a0] px-6 font-normal
+                                whitespace-nowrap">#34543</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Denim Jacket</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Clothing</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">$1400</td>
+                                <td scope="row" className="py-4 text-[#b72525] px-6 font-normal
+                                whitespace-nowrap">Pending</td>
+                                <td scope="row" className="py-4 px-6 font-normal text-[#3848ab]
+                                whitespace-nowrap"><Link>View</Link></td>
+                            </tr>
+                            <tr className="border-b-[1px]">
+                                <td scope="row" className="py-4 text-[#a0a0a0] px-6 font-normal
+                                whitespace-nowrap">#34543</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Denim Jacket</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Clothing</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">$1400</td>
+                                <td scope="row" className="py-4 text-[#b72525] px-6 font-normal
+                                whitespace-nowrap">Pending</td>
+                                <td scope="row" className="py-4 px-6 font-normal text-[#3848ab]
+                                whitespace-nowrap"><Link>View</Link></td>
+                            </tr>
+                            <tr className="border-b-[1px]">
+                                <td scope="row" className="py-4 text-[#a0a0a0] px-6 font-normal
+                                whitespace-nowrap">#34543</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Denim Jacket</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Clothing</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">$1400</td>
+                                <td scope="row" className="py-4 text-[#b72525] px-6 font-normal
+                                whitespace-nowrap">Pending</td>
+                                <td scope="row" className="py-4 px-6 font-normal text-[#3848ab]
+                                whitespace-nowrap"><Link>View</Link></td>
+                            </tr>
+                            <tr className="border-b-[1px]">
+                                <td scope="row" className="py-4 text-[#a0a0a0] px-6 font-normal
+                                whitespace-nowrap">#34543</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Denim Jacket</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">Clothing</td>
+                                <td scope="row" className="py-4 px-6 font-normal
+                                whitespace-nowrap">$1400</td>
+                                <td scope="row" className="py-4 text-[#25b727] px-6 font-normal
+                                whitespace-nowrap">Paid</td>
+                                <td scope="row" className="py-4 px-6 font-normal text-[#3848ab]
+                                whitespace-nowrap"><Link>View</Link></td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
+            {/* here the Top sellers list starts */}
+            <div className="w-full lg:w-3/12 lg:pl-4 mt-4 lg:mt-0 ">
+                    <div className="w-full p-4 rounded-md bg-[#ffffff] text-[#000000]">
+                        <div className="flex pb-2 border-b-[1px] justify-between items-center">
+                            <h2 className="font-normal text-[16px] text-[#000000]">Top Sellers</h2>
+                            <Link className="text-xs text-slate-400 font-light">See all</Link>
+                        </div>
+                        <div className="flex flex-col gap-2 pt-3 text-[#000000]">
+                            <ol className="relative border-1 p-2 border-slate-600 ">
+                                {/* this is for admin chat */}
+                                <li>
+                                    <div className="flex pb-4 items-center gap-2 ">
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/user2.png" alt="" />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div>
+                                            <h2 className="font-normal text-sm">Narayana Fabrics</h2>
+                                            <h2 className="font-thin text-xs">Clothing</h2>
+                                            </div>
+                                            <h2 className="text-xs text-slate-400">$110.65</h2>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="flex pb-4  items-center gap-2 ">
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/user.png" alt="" />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div>
+                                            <h2 className="font-normal text-sm">Narayana Fabrics</h2>
+                                            <h2 className="font-thin text-xs">Clothing</h2>
+                                            </div>
+                                            <h2 className="text-xs text-slate-400">$110.65</h2>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="flex pb-4 items-center gap-2 ">
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/user2.png" alt="" />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div>
+                                            <h2 className="font-normal text-sm">Narayana Fabrics</h2>
+                                            <h2 className="font-thin text-xs">Clothing</h2>
+                                            </div>
+                                            <h2 className="text-xs text-slate-400">$110.65</h2>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="flex pb-4 items-center gap-2 ">
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/user.png" alt="" />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div>
+                                            <h2 className="font-normal text-sm">Narayana Fabrics</h2>
+                                            <h2 className="font-thin text-xs">Clothing</h2>
+                                            </div>
+                                            <h2 className="text-xs text-slate-400">$110.65</h2>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="flex pb-4 items-center gap-2 ">
+                                        <img className="w-[35px] rounded-full" src="http://localhost:3000/admin.webp" alt="" />
+                                        <div className="flex w-full items-center justify-between">
+                                            <div>
+                                            <h2 className="font-normal text-sm">Narayana Fabrics</h2>
+                                            <h2 className="font-thin text-xs">Clothing</h2>
+                                            </div>
+                                            <h2 className="text-xs text-slate-400">$110.65</h2>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+        </div>
         </div>
     );
 };
