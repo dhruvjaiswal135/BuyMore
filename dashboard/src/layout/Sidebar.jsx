@@ -23,7 +23,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
       {/* 🔹 Sidebar Container */}
       <div
-        className={`fixed top-0 left-0 h-screen w-[250px] bg-white shadow-md border-r z-50 transform transition-transform duration-300 
+        className={`fixed top-0 left-0 h-screen w-[250px] bg-white  border-r z-50 transform transition-transform duration-300 
           ${showSidebar ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
       >
         {/* 🔹 Logo Section */}

@@ -5,15 +5,15 @@ import { FaEye } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { IoDownloadOutline } from "react-icons/io5";
 import { GoDotFill } from "react-icons/go";
-const Sellers = () => {
+const DeactiveSeller = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const [perPage, setPerPage] = useState(5);
   const [show, setShow] = useState(false);
   return (
     <div className=" px-4 py-9">
-      <div className="w-full p-4 shadow rounded-md bg-white border border--slate-200">
-        <div className="flex justify-between items-center gap-3">
+      <div className="bg-white p-4 rounded-md shadow border border-gray-200">
+        <div className="flex justify-between items-center gap-3 ">
                   {/* Search Input */}
                   <div className="relative w-full ">
                     <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
@@ -171,4 +171,4 @@ const Sellers = () => {
   );
 };
 
-export default Sellers;
+export default DeactiveSeller;

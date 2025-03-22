@@ -16,37 +16,37 @@ const Orders = () => {
   const [perpage, setPerpage] = useState(5);
   const [show, setShow] = useState(false);  //for dropdown menu in action's next column
   return (
-    <div className="px-2 lg:px-7 pt-9">
-      <div className="w-full p-4 rounded-md bg-white border border--slate-200">
-        <div className="flex justify-between items-center gap-3">
-          <div className="relative w-full">
-            <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
-                <CiSearch />
-            </span>
-            <input
-              className="rounded-lg px-12 py-2 w-full text-black font-light text-[13px]
-              outline-none border focus:border-[#3948ab] focus:bg-white
-              overflow-hidden focus:text-[#000000] focus:text-opacity-5 
-              pl-10"
-              type="text"
-              name="search"
-              placeholder="Search by order id, product, category or others..."/>
-          </div>
-          <select
-            onChange={(e) => setPerpage(parseInt(e.target.value))}
-            className="px-4 py-2 focus:border-[#3948ab] focus:bg-white font-light text-[13px]
-                    outline-none bg-gray-50 border rounded-md text-black">
-            <option value="5">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select>
-          <div className="px-4 py-2 flex items-center gap-3 focus:border-[#3948ab] focus:bg-white font-light text-[13px]
-                    outline-none bg-gray-50 border rounded-md text-black">
-            <span><IoDownloadOutline /></span>
-            <span>Download</span>
-          </div>
-        </div>
+    <div className=" px-4 py-9">
+      <div className="w-full p-4 shadow rounded-md bg-white border border--slate-200">
+        <div className="flex justify-between items-center gap-3 px-">
+                  {/* Search Input */}
+                  <div className="relative w-full ">
+                    <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                      <CiSearch />
+                    </span>
+                    <input
+                      type="text"
+                      name="search"
+                      placeholder="Search by order id, product, category or others..."
+                      className="block w-full pl-10 pr-3 py-2 border font-light border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
+                    />
+                  </div>
+                  {/* Select */}
+                  <select
+                    onChange={(e) => console.log("Change page size:", parseInt(e.target.value))}
+                    className="px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab]"
+                  >
+                    <option value="5">05</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                  </select>
+                  {/* Download Button */}
+                  <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-xs text-gray-700 cursor-pointer hover:bg-gray-100">
+                    <IoDownloadOutline />
+                    <span>Download</span>
+                  </div>
+                </div>
         <div className="relative mt-5 overflow-x-auto">
           <div className="w-full text-xs text-left">
             <div
