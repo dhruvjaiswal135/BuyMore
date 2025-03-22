@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { LuArrowDownNarrowWide } from "react-icons/lu";
 import { CiSearch } from "react-icons/ci";
-import { IoDownloadOutline } from "react-icons/io5";
+import { IoCheckmark, IoDownloadOutline } from "react-icons/io5";
 import { GoDotFill } from "react-icons/go";
 import { Link } from 'react-router-dom';
 import { IoMdCheckmark } from "react-icons/io";
@@ -52,50 +52,50 @@ const Orders = () => {
             <div
               className=" text-[#000000] uppercase border-b">
               <div className="flex justify-between items-center">
-                <div className="py-3 w-[25%] font-medium">Order Id</div>
-                <div className="py-3 w-[25%] font-medium">Product</div>
-                <div className="py-3 w-[25%] font-medium">Category</div>
-                <div className="py-3 w-[25%] font-medium">Price</div>
-                <div className="py-3 w-[25%] font-medium">Payment Status</div>
-                <div className="py-3 w-[25%] font-medium">Action</div>
-                <div className="py-3 w-[25%] font-medium">
-                  <LuArrowDownNarrowWide />
-                </div>
+                <div className="py-3 w-[25%] text-center  font-medium">Order Id</div>
+                <div className="py-3 w-[25%] text-center font-medium">Product</div>
+                <div className="py-3 w-[25%] text-center font-medium">Category</div>
+                <div className="py-3 w-[25%] text-center font-medium">Price</div>
+                <div className="py-3 w-[25%] text-center font-medium">Payment Status</div>
+                <div className="py-3 w-[25%] text-center font-medium">Action</div>
+                <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
               </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000]  text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-red-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-red-700">
                 <span><GoDotFill /></span>
                 Pending</div>
-              <div className=" py-3 w-[25%] font-light  ">
+                <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
-              View</div></Link></div> 
-              <div onClick={(e)=> setShow(!show)} className="py-3 w-[25%] font-light"> 
-              {/* for dropdown menu in action's next column */}
-                <LuArrowDownNarrowWide /></div>
+              View</div></Link></div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           {/* here implement the dropdown menu */}
           <div className={show ? 'block border-b  bg-[#c6c6c622]' : 'hidden'}> 
-          <div className="flex border-b text-xs ">
+          <div className="flex border-b text-xs text-center">
               <div className="py-3 pl-3 w-[14.5%]  whitespace-nowrap text-gray-400 font-normal"> #3454</div>
               <div className="py-3 w-[14.5%] font-light">Denim Jeans</div>
               <div className="py-3 w-[14%] font-light">Clothing</div>
               <div className="py-3 w-[14%] font-light">$458</div>
               
             </div>
-            <div className="flex border-b text-xs ">
+            <div className="flex border-b text-xs text-center ">
               <div className="py-3 pl-3 w-[14.5%]  whitespace-nowrap text-gray-400 font-normal"> #3454</div>
               <div className="py-3 w-[14.5%] font-light">Denim Jeans</div>
               <div className="py-3 w-[14%] font-light">Clothing</div>
@@ -105,183 +105,191 @@ const Orders = () => {
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-green-700">
-                <span><IoMdCheckmark /></span>
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-green-700">
+                <span><IoCheckmark /></span>
                 Received</div>
                 <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] font-light">
-                <LuArrowDownNarrowWide />
-              </div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-red-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-red-700">
                 <span><GoDotFill /></span>
                 Pending</div>
-              <div className=" py-3 w-[25%] font-light  ">
-              <Link>
-              <div className="flex items-center gap-2">
-              <span><IoDocumentAttachOutline /></span> 
-              View</div></Link></div> 
-              <div className="py-3 w-[25%] font-light"><LuArrowDownNarrowWide /></div>
-            </div>
-          </div>
-
-          <div
-            className="text-xs text-[#000000] uppercase border-b">
-            <div className="py-1 flex justify-between items-start ">
-              <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
-              <div className="py-3 w-[25%] font-light">Denim Jeans</div>
-              <div className="py-3 w-[25%] font-light">Clothing</div>
-              <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-green-700">
-                <span><IoMdCheckmark /></span>
-                Received</div>
                 <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] font-light">
-                <LuArrowDownNarrowWide />
-              </div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-red-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-red-700">
                 <span><GoDotFill /></span>
                 Pending</div>
-              <div className=" py-3 w-[25%] font-light  ">
-              <Link>
-              <div className="flex items-center gap-2">
-              <span><IoDocumentAttachOutline /></span> 
-              View</div></Link></div> 
-              <div className="py-3 w-[25%] font-light"><LuArrowDownNarrowWide /></div>
-            </div>
-          </div>
-
-          <div
-            className="text-xs text-[#000000] uppercase border-b">
-            <div className="py-1 flex justify-between items-start ">
-              <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
-              <div className="py-3 w-[25%] font-light">Denim Jeans</div>
-              <div className="py-3 w-[25%] font-light">Clothing</div>
-              <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-green-700">
-                <span><IoMdCheckmark /></span>
-                Received</div>
                 <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] font-light">
-                <LuArrowDownNarrowWide />
-              </div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-red-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-red-700">
                 <span><GoDotFill /></span>
                 Pending</div>
-              <div className=" py-3 w-[25%] font-light  ">
+                <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
-              View</div></Link></div> 
-              <div className="py-3 w-[25%] font-light"><LuArrowDownNarrowWide /></div>
+              View</div></Link></div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-green-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-green-700">
                 <span><IoMdCheckmark /></span>
                 Received</div>
                 <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] font-light">
-                <LuArrowDownNarrowWide />
-              </div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-red-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-red-700">
                 <span><GoDotFill /></span>
                 Pending</div>
-              <div className=" py-3 w-[25%] font-light  ">
+                <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
-              View</div></Link></div> 
-              <div className="py-3 w-[25%] font-light"><LuArrowDownNarrowWide /></div>
+              View</div></Link></div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
 
           <div
-            className="text-xs text-[#000000] uppercase border-b">
+            className="text-xs text-[#000000] text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>
               <div className="py-3 w-[25%] font-light">Clothing</div>
               <div className="py-3 w-[25%] font-light">$458</div>
-              <div className="flex items-center gap-2 py-3 w-[25%] font-normal text-green-700">
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-green-700">
                 <span><IoMdCheckmark /></span>
                 Received</div>
                 <div className=" py-3 w-[25%] font-light  ">
               <Link>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] font-light">
-                <LuArrowDownNarrowWide />
-              </div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
+            </div>
+          </div>
+
+          <div
+            className="text-xs text-[#000000] text-center uppercase border-b">
+            <div className="py-1 flex justify-between items-start ">
+              <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
+              <div className="py-3 w-[25%] font-light">Denim Jeans</div>
+              <div className="py-3 w-[25%] font-light">Clothing</div>
+              <div className="py-3 w-[25%] font-light">$458</div>
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-green-700">
+                <span><IoMdCheckmark /></span>
+                Received</div>
+                <div className=" py-3 w-[25%] font-light  ">
+              <Link>
+              <div className="flex items-center justify-center gap-2">
+              <span><IoDocumentAttachOutline /></span> 
+              View</div></Link></div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
+            </div>
+          </div>
+
+          <div
+            className="text-xs text-[#000000] text-center  uppercase border-b">
+            <div className="py-1 flex justify-between items-start ">
+              <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal"> #34543</div>
+              <div className="py-3 w-[25%] font-light">Denim Jeans</div>
+              <div className="py-3 w-[25%] font-light">Clothing</div>
+              <div className="py-3 w-[25%] font-light">$458</div>
+              <div className="flex justify-center items-center gap-2 py-3 w-[25%] font-normal text-green-700">
+                <span><IoMdCheckmark /></span>
+                Received</div>
+                <div className=" py-3 w-[25%] font-light  ">
+              <Link>
+              <div className="flex items-center justify-center gap-2">
+              <span><IoDocumentAttachOutline /></span> 
+              View</div></Link></div>
+              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+                    <LuArrowDownNarrowWide />
+                  </div>
             </div>
           </div>
         </div>

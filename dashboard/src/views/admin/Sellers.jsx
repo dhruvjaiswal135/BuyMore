@@ -47,31 +47,31 @@ const Sellers = () => {
           <table className="w-full mt-5 font-light text-xs text-left text-[#000000]">
             <thead className="text-xs  text-[#000000] uppercase border-b ">
               <tr>
-                <th scope="col" className="py-3 px-4 font-medium">
-                  No
+                <th scope="col" className="py-3 px-4 text-center font-medium">
+                  S.No
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Image
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Name
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Shop Name
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Payment Status
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Email
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Division
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   District
                 </th>
-                <th scope="col" className="py-3 px-4 font-medium">
+                <th scope="col" className="py-3 px-4 text-center font-medium">
                   Action
                 </th>
               </tr>
@@ -82,34 +82,34 @@ const Sellers = () => {
                 <tr key={i} className="border-b">
                   <td
                     scope="row"
-                    className="py-1 px-4 text-xs text-gray-400 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center text-xs text-gray-400 font-light whitespace-nowrap"
                   >
                     {i + 1}
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
                     <img
-                      className="w-[45px] h-[45px] rounded-xl"
+                      className="w-[45px] text-center h-[45px] rounded-xl"
                       src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ-0c3Ol60ZQVThV9KvzXTzisbx_4QzjtF2oNPmQHu4eOa23OVDYVX4xSwmYgO024fvjJRtEMPN__BX9Z806anSMt19kFn55GK5LCuyroF0"
                       alt=""
                     />
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
                     FaceWash{" "}
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 text-xs font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center text-xs font-light whitespace-nowrap"
                   >
                     BuyMore
                   </td>
                   <td scope="row" className="px-4 font-normal   text-red-700">
-                    <div className="flex items-center gap-2">
+                    <div className="flex justify-center items-center gap-2">
                       <span>
                         <GoDotFill />
                       </span>
@@ -118,39 +118,39 @@ const Sellers = () => {
                   </td>
                   <td
                     scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
                     buymore@gmail.com{" "}
                   </td>
 
                   <td
                     scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
                     Delhi{" "}
                   </td>
 
                   <td
                     scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
+                    className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
-                    Mayur Vihar{" "}
+                    Mayur Vihar
                   </td>
 
                   <td
-                    scope="row"
-                    className="py-1 px-4 font-light whitespace-nowrap"
-                  >
-                    <div className="flex justify-start items-center gap-4">
-                      <Link
-                        to={`/admin/dashboard/seller/details/${d._id}`}
-                        className="p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50"
-                      >
-                        {" "}
-                        <FaEye />{" "}
-                      </Link>
-                    </div>
-                  </td>
+  scope="row"
+  className="py-1 px-4 font-light whitespace-nowrap text-center"
+>
+  <div className="flex items-center justify-center gap-4">
+    <Link
+      to={`/admin/dashboard/seller/details/${d._id}`}
+      className="p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50"
+    >
+      <FaEye />
+    </Link>
+  </div>
+</td>
+
                 </tr>
               ))}
             </tbody>
