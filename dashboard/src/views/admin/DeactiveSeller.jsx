@@ -50,9 +50,10 @@ const DeactiveSeller = () => {
                                 <th scope="col" className="py-3 px-4 font-medium text-center">S.No</th>
                                 <th scope="col" className="py-3 px-4 font-medium text-center">Image</th>
                                 <th scope="col" className="py-3 px-4 font-medium text-center">Name</th>
-                                <th scope="col" className="py-3 px-4 font-medium text-center">Shop Name</th>
-                                <th scope="col" className="py-3 px-4 font-medium text-center">Payment Status</th>
                                 <th scope="col" className="py-3 px-4 font-medium text-center">Email</th>
+                                <th scope="col" className="py-3 px-4 font-medium text-center">Payment Status</th>
+                                <th scope="col" className="py-3 px-4 font-medium text-center">Status</th>
+                                <th scope="col" className="py-3 px-4 font-medium text-center">Shop Name</th>
                                 <th scope="col" className="py-3 px-4 font-medium text-center">Action</th>
                             </tr>
                         </thead>
@@ -72,10 +73,11 @@ const DeactiveSeller = () => {
                                         className="py-1 px-4 text-center font-light whitespace-nowrap"
                                     >
                                         <img
-                                            className="w-[45px] text-center h-[45px] rounded-xl"
+                                            className="w-[45px] h-[45px] rounded-xl block mx-auto"
                                             src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ-0c3Ol60ZQVThV9KvzXTzisbx_4QzjtF2oNPmQHu4eOa23OVDYVX4xSwmYgO024fvjJRtEMPN__BX9Z806anSMt19kFn55GK5LCuyroF0"
                                             alt=""
                                         />
+
                                     </td>
                                     <td
                                         scope="row"
@@ -85,9 +87,9 @@ const DeactiveSeller = () => {
                                     </td>
                                     <td
                                         scope="row"
-                                        className="py-1 px-4 text-center text-xs font-light whitespace-nowrap"
+                                        className="py-1 px-4 text-center font-light whitespace-nowrap"
                                     >
-                                        BuyMore
+                                        buymore@gmail.com{" "}
                                     </td>
                                     <td scope="row" className="px-4 text-center font-normal   text-red-700">
                                         <div className="flex justify-center items-center gap-2">
@@ -97,14 +99,19 @@ const DeactiveSeller = () => {
                                             <span>PENDING</span>
                                         </div>{" "}
                                     </td>
+                                    
                                     <td
                                         scope="row"
-                                        className="py-1 px-4 text-center font-light whitespace-nowrap"
+                                        className="py-1 px-4 text-center text-xs font-light whitespace-nowrap"
                                     >
-                                        buymore@gmail.com{" "}
+                                        Deactive
                                     </td>
-
-
+                                    <td
+                                        scope="row"
+                                        className="py-1 px-4 text-center text-xs font-light whitespace-nowrap"
+                                    >
+                                        BuyMore
+                                    </td>
 
                                     <td
                                         scope="row"

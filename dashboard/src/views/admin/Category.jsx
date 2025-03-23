@@ -9,7 +9,7 @@ import { IoCloseOutline } from "react-icons/io5";
 import { IoImageOutline } from "react-icons/io5";
 
 const Category = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);  //used for modal
   const [perpage, setPerpage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1); //used for pagination
   const [show, setShow] = useState(false); //for dropdown menu in action's next column

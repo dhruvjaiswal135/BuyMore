@@ -17,7 +17,7 @@ const Orders = () => {
   const [show, setShow] = useState(false);  //for dropdown menu in action's next column
   return (
     <div className=" px-4 py-9">
-      <div className="w-full p-4 shadow rounded-md bg-white border border--slate-200">
+      <div className="w-full p-4 shadow rounded-md bg-white border border-gray-200">
         <div className="flex justify-between items-center gap-3 px-">
                   {/* Search Input */}
                   <div className="relative w-full ">
