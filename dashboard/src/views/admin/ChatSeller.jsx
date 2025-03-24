@@ -3,6 +3,10 @@ import { MdOutlineSettings } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { GoDotFill } from "react-icons/go";
 import { PiDotsThreeOutlineVertical } from "react-icons/pi";
+import { RiAttachment2 } from "react-icons/ri";
+import { BsEmojiSmile } from "react-icons/bs";
+import { IoSendOutline } from "react-icons/io5";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 const ChatSeller = () => {
   return (
@@ -10,7 +14,7 @@ const ChatSeller = () => {
       <div className="w-full p-4 bg-white ">
         <div className="w-full flex flex-wrap">
           {/* first section  */}
-          <div className="w-full lg:w-3/12  p-2">
+          <div className="w-full lg:w-4/12  p-2">
             <div className="w-full p-2 rounded-md">
               <div className="flex justify-between items-center ">
                 <div className="flex items-center justify-between gap-4 ">
@@ -32,7 +36,7 @@ const ChatSeller = () => {
                   className="block w-full pl-10 pr-3 py-2 border font-light border-gray-200 rounded-full placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
                 />
               </div>
-              <div className="w-full mt-5 shadow rounded-md p-2 max-h-[500px] overflow-y-auto space-y-4">
+              <div className="w-full mt-5 shadow rounded-md p-2 max-h-[489px] overflow-y-auto space-y-4">
                 <div className="w-full pb-5 border-b pt-2">
                   <div className="flex justify-between">
                     <div className="flex gap-1 items-center">
@@ -59,7 +63,7 @@ const ChatSeller = () => {
                     </div>
                     <h1 className="text-xs font-medium text-gray-300">5m</h1>
                   </div>
-                  <div className="w-full mt-5">
+                  <div className="w-full mt-5 pl-6">
                     <p className="text-xs font-medium text-gray-800">
                       Hello, Will this item be shipped today?
                     </p>
@@ -93,7 +97,7 @@ const ChatSeller = () => {
                     <h1 className="text-xs font-medium text-gray-300">5m</h1>
                   </div>
                   <div className="w-full mt-5">
-                    <p className="text-xs font-medium text-gray-800">
+                    <p className="text-xs font-medium pl-6 text-gray-800">
                       Hello, Will this item be shipped today?
                     </p>
                   </div>
@@ -126,7 +130,7 @@ const ChatSeller = () => {
                     <h1 className="text-xs font-medium text-gray-300">5m</h1>
                   </div>
                   <div className="w-full mt-5">
-                    <p className="text-xs font-medium text-gray-800">
+                    <p className="text-xs pl-6 font-medium text-gray-800">
                       Hello, Will this item be shipped today?
                     </p>
                   </div>
@@ -159,7 +163,7 @@ const ChatSeller = () => {
                     <h1 className="text-xs font-medium text-gray-300">5m</h1>
                   </div>
                   <div className="w-full mt-5">
-                    <p className="text-xs font-medium text-gray-800">
+                    <p className="text-xs pl-6 font-medium text-gray-800">
                       Hello, Will this item be shipped today?
                     </p>
                   </div>
@@ -192,7 +196,7 @@ const ChatSeller = () => {
                     <h1 className="text-xs font-medium text-gray-300">5m</h1>
                   </div>
                   <div className="w-full mt-5">
-                    <p className="text-xs font-medium text-gray-800">
+                    <p className="text-xs pl-6 font-medium text-gray-800">
                       Hello, Will this item be shipped today?
                     </p>
                   </div>
@@ -202,11 +206,11 @@ const ChatSeller = () => {
           </div>
 
           {/* second section  */}
-          <div className="w-full lg:w-6/12 p-2 ">
-            <div className="w-full p-2 rounded-md bg-black">
-              <div className="">
+          <div className="w-full lg:w-8/12 p-2 ">
+            <div className="w-full rounded-t-3xl shadow">
+              <div>
                 {/* header section */}
-                <div className="shadow rounded-t-3xl p-4">
+                <div className="shadow-xl rounded-t-3xl p-4">
                   <div className="flex justify-between items-center">
                     <div className="flex gap-3 items-center ">
                       <div className="flex items-center gap-1">
@@ -234,10 +238,9 @@ const ChatSeller = () => {
                 </div>
 
                 {/* chat section */}
-
-                <div className="mt-1 p-4">
+                <div className="mt-1 pt-4 pb-4">
                   {/* date */}
-                  <div className="w-full pl-52 pr-52">
+                  <div className="w-full pl-80 pr-80">
                     <h1 className="text-center text-[10px] rounded-md p-1 bg-gray-100 text-gray-400 font-semibold">
                       August 21
                     </h1>
@@ -251,7 +254,7 @@ const ChatSeller = () => {
                       <div className="flex-shrink-0">
                         <img
                           className="w-12 h-12 rounded-full object-cover"
-                          src="https://icons8.com/l/3d/images/1_with_coffee_girl_2.webp"
+                          src="https://img.freepik.com/premium-photo/young-man-with-backpack-mobile-phone-his-hand-3d-illustration_1057-45364.jpg?w=360"
                           alt="User Avatar"
                         />
                       </div>
@@ -270,7 +273,6 @@ const ChatSeller = () => {
                         </span>
                       </div>
                     </div>
-
                     {/* Reply Content */}
                     <div className="flex mt-4">
                       <div className="flex gap-2">
@@ -290,41 +292,44 @@ const ChatSeller = () => {
                         <div className="flex-shrink-0">
                           <img
                             className="w-10 h-10 rounded-full object-cover"
-                            src="https://icons8.com/l/3d/images/1_with_coffee_girl_2.webp"
+                            src="http://localhost:3000/admin.webp"
                             alt="User Avatar"
                           />
                         </div>
                       </div>
                     </div>
-                    <div className="w-full pl-48 pr-48 mt-4">
-                    <h1 className="text-center text-[10px] rounded-md p-1 bg-gray-100 text-gray-400 font-semibold">
-                      August 22
-                    </h1>
+                    <div className="w-full pl-[298px] pr-[298px] mt-4">
+                      <h1 className="text-center text-[10px] rounded-md p-1 bg-gray-100 text-gray-400 font-semibold">
+                        August 22
+                      </h1>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br /> <br /> <br />
+                    <div className="relative w-full ">
+                      <input
+                        type="text"
+                        name="search"
+                        placeholder="Write a message"
+                        className="block w-full pr-10  pb-3 pt-3 pl-3 py-2 border font-light border-gray-200 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
+                      />
+                      <div className="absolute inset-y-0 gap-1.5 right-0 pr-3 flex items-center text-gray-400">
+                      <RiAttachment2 />
+                      <BsEmojiSmile />
+                      <div className="bg-[#3948ab] p-1.5 rounded-lg text-white">
+                      <IoSendOutline /></div>
+                      </div>
+                    </div>
                   </div>
-
-                  <div className="relative w-full mt-5 order-last">
-    <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-      <CiSearch />
-    </span>
-    <input
-      type="text"
-      name="search"
-      placeholder="Search chat"
-      className="block w-full pl-10 pr-3 py-2 border font-light border-gray-200 rounded-full placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
-    />
-  </div>
-                  </div>
-                  
                 </div>
-                
               </div>
             </div>
           </div>
 
           {/* third section  */}
-          <div className="w-full lg:w-3/12 p-2">
-            <div className="w-full p-2 rounded-md">fgh</div>
-          </div>
+          
         </div>
       </div>
     </div>
