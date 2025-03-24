@@ -182,16 +182,16 @@ const adminDashboard = () => {
                 </div>
             </div>
             
-            <div className=" w-full flex flex-wrap mt-7 justify-between">
+            <div className=" w-full flex flex-wrap mt-7 bg-blackjustify-between">
                 {/* this is the chart section */}
-                <div className="w-full lg:w-9/12 lg:pr-3">
-                    <div className="w-full  p-4 rounded-md">
+                <div className="w-full lg:w-9/12 lg:pr-3 ">
+                    <div className="w-full p-4 rounded-md ">
                         <Chart options={state.options} series={state.series}
                             type="line" height={300} />
                     </div>
                 </div>
                 {/* here live chat section starts */}
-                <div className="w-full lg:w-3/12 lg:pl-4 mt-4 lg:mt-0 ">
+                <div className="w-full lg:w-3/12 lg:pl-4 mt-4 lg:mt-0  ">
                     <div className="w-full p-4 rounded-md bg-[#ffffff] text-[#000000]">
                         <div className="flex pb-2 border-b-[1px] justify-between items-center">
                             <h2 className="font-normal text-[16px] text-[#000000]">Recent Chat</h2>

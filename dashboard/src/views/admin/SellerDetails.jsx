@@ -6,7 +6,7 @@ const SellerDetailsModal = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm animate-fadeIn">
-            <div className="relative bg-white rounded-lg shadow-lg w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:max-w-4xl p-6 border-t-8 border-[#3948ab] animate-modalIn">
+            <div className="relative bg-white rounded-lg shadow-lg w-full sm:w-11/12 md:w-4/5 lg:w-3/4 xl:max-w-4xl p-6 border-[#3948ab] animate-modalIn">
                 <div className="flex justify-between items-center border-b pb-3 mb-4">
                     <h1 className="text-xl font-bold text-[#3948ab]">Seller Details</h1>
                     <button

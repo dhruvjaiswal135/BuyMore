@@ -9,7 +9,6 @@ import { IoMdCheckmark } from "react-icons/io";
 import { IoDocumentAttachOutline } from "react-icons/io5";
 import Pagination from "../Pagination";
 
-
 const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1); //used for pagination
   const [searchValue, setSearchValue] = useState("");
@@ -80,7 +79,7 @@ const Orders = () => {
               <div className="flex items-center justify-center gap-2">
               <span><IoDocumentAttachOutline /></span> 
               View</div></Link></div>
-              <div className="py-3 w-[25%] flex justify-center items-center font-medium">
+              <div onClick={(e) => setShow(true)} className="py-3 w-[25%] flex justify-center items-center font-medium">
                     <LuArrowDownNarrowWide />
                   </div>
             </div>

@@ -75,7 +75,7 @@ const SellerRequest = () => {
             </thead>
 
             <tbody className="uppercase text-xs text-[#000000]  border-b">
-              {[1, 2, 3, 4, 5, 6, 7].map((d, i) => (
+              {[1, 2, 3, 4, 5, 6, 7,8,9,10].map((d, i) => (
                 <tr key={i} className="border-b ">
                   <td
                     scope="row"
