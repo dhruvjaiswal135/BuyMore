@@ -4,8 +4,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { IoIosNotificationsOutline } from "react-icons/io";
 const Header = ({showSidebar, setShowSidebar}) => {
     return (
-        <div className='fixed top-0 left-0 w-full py-5 px-20 lg:px-7 z-40 bg-white 
-         '>
+        <div className="fixed top-0 left-0 w-full py-5 px-4 sm:px-6 lg:px-7 z-40 bg-white">
+
         <div className='ml-0 lg:ml-[260px] rounded-md h-[90px]
         flex justify-between items-center px-5 transition-all duration-300'>
             <div onClick={()=> setShowSidebar(!showSidebar) }
