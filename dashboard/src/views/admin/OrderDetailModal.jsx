@@ -16,7 +16,24 @@ const OrderDetailModal = ({ isOpen, onClose }) => {
           </button>
         </div>
         <div className="flex flex-col md:flex-row text-gray-800 gap-6">
-        <div className="w-full md:w-1/3 px-2">
+          <div className="w-full md:w-1/3 flex flex-col justify-center items-center">
+            <div>
+              <img
+                className="w-28 h-28 shadow-lg rounded-full border border-gray-100"
+                src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTrl0hkvwaUZJCKMsus_KjQdVpxDiikwgKOBt3ZsZA0IoVuo6b8JgOV21Wt2CpTeRMYpEDu_UiO3ksQIjC8ux05IXOiYqfTnrLpenEdfEs"
+                alt="Seller"
+              />
+            </div>
+            <div className="flex flex-col items-center text-center mt-3">
+              <h1 className="text-xs font-semibold text-[#3948ab]">
+                Foxtale Cleanser
+              </h1>
+              <h1 className="text-xs font-medium">Brand: Easy</h1>
+              <h1 className="text-xs font-medium">Quantity: 03</h1>
+            </div>
+          </div>
+
+          <div className="w-full md:w-1/3 px-2">
             <h2 className="text-md font-semibold mb-2 border-b pb-1 border-gray-300">
               Basic Info
             </h2>
@@ -34,38 +51,11 @@ const OrderDetailModal = ({ isOpen, onClose }) => {
                 <span className="text-gray-800">Seller</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Status:</span>
-                <span className="text-green-600">Active</span>
+                <span className="font-bold text-gray-600">Price:</span>
+                <span className="text-black">$4565</span>
               </div>
               <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Payment:</span>
-                <span className="text-green-600">Paid</span>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/3 px-2">
-            <h2 className="text-md font-semibold mb-2 border-b pb-1 border-gray-300">
-              Basic Info
-            </h2>
-            <div className="space-y-1 text-sm">
-              <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Name:</span>
-                <span className="text-gray-800">John Doe</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Email:</span>
-                <span className="text-gray-800">john.doe@example.com</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Role:</span>
-                <span className="text-gray-800">Seller</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Status:</span>
-                <span className="text-green-600">Active</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="font-bold text-gray-600">Payment:</span>
+                <span className="font-bold text-gray-600">Payment Status:</span>
                 <span className="text-green-600">Paid</span>
               </div>
             </div>
