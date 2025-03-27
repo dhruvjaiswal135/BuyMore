@@ -1,13 +1,15 @@
 import { RxDashboard } from "react-icons/rx";
 import { RiShoppingCartLine } from "react-icons/ri";
-import { BiCategoryAlt } from "react-icons/bi";
+import { BiCategoryAlt,BiSupport } from "react-icons/bi";
 import { PiUsersThreeBold } from "react-icons/pi";
 import { MdPayment } from "react-icons/md";
 import { FaUsersSlash } from "react-icons/fa";
 import { RiUserReceivedLine } from "react-icons/ri";
+import { MdAddShoppingCart } from "react-icons/md";
+import { MdOutlineDiscount,MdOutlineSettings } from "react-icons/md";
+import { BsCartCheck } from "react-icons/bs";
+import { FiShoppingBag } from "react-icons/fi";
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
-import { MdSupportAgent,MdOutlineSettings } from "react-icons/md";
-
 
 export const allNav = [
     {
@@ -73,5 +75,69 @@ export const allNav = [
         role : 'admin',
         path: '/admin/dashboard/settings',
     },
+    {
+        id: 10,
+        title: 'Dashboard',
+        icon: <RxDashboard/>,
+        role : 'seller',
+        path: '/seller/dashboard',
+    },
+    {
+        id: 11,
+        title: 'Add Product',
+        icon: <MdAddShoppingCart/>,
+        role : 'seller',
+        path: '/seller/add-product',
+    },
+    {
+        id: 12,
+        title: 'All Product',
+        icon: <BsCartCheck/>,
+        role : 'seller',
+        path: '/seller/all-product',
+    },
+    {
+        id: 13,
+        title: 'Discount Product',
+        icon: <MdOutlineDiscount/>,
+        role : 'seller',
+        path: '/seller/discount-product',
+    },
+    {
+        id: 14,
+        title: 'Orders',
+        icon: <FiShoppingBag/>,
+        role : 'seller',
+        path: '/seller/orders',
+    },
+    {
+        id: 15,
+        title: 'Payments',
+        icon: <MdPayment/>,
+        role : 'seller',
+        path: '/seller/payments',
+    },
+    {
+        id: 16,
+        title: 'Chat Customer',
+        icon: <MdOutlineMarkUnreadChatAlt/>,
+        role : 'seller',
+        path: '/seller/chat-customer',
+    },
+    {
+        id: 17,
+        title: 'Chat Support',
+        icon: <BiSupport/>,
+        role : 'seller',
+        path: '/seller/chat-support',
+    },
+    {
+        id: 18,
+        title: 'Settings',
+        icon: <MdOutlineSettings/>,
+        role : 'seller',
+        path: '/seller/settings',
+    },
+
 
 ]

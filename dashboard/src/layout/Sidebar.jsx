@@ -8,7 +8,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
   const [allNav, setAllNav] = useState([]);
 
   useEffect(() => {
-    const navs = getNav("admin"); // Sidebar for admin only
+    const navs = getNav("seller"); // Sidebar for admin only
     setAllNav(navs);
   }, []);
 
