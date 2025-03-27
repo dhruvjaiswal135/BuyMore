@@ -182,7 +182,7 @@ const adminDashboard = () => {
                 </div>
             </div>
             
-            <div className=" w-full flex flex-wrap mt-7 bg-blackjustify-between">
+            <div className=" w-full flex flex-wrap mt-7 justify-between">
                 {/* this is the chart section */}
                 <div className="w-full lg:w-9/12 lg:pr-3 ">
                     <div className="w-full p-4 rounded-md ">

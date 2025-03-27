@@ -1,5 +1,8 @@
 import Home from '../../views/pages/Home';
 import SellerDashboard from '../../views/seller/SellerDashboard';
+import AddProduct from '../../views/seller/AddProduct';
+
+
 export const sellerRoutes = [
      {
         path: '/',  // route path relative to the domain name.
@@ -10,5 +13,10 @@ export const sellerRoutes = [
       path: '/seller/dashboard',  
       element: <SellerDashboard/>, 
       ability: ['seller'],
-     }
+     },
+     {
+      path: '/seller/add-product',  
+      element: <AddProduct/>, 
+      ability: ['seller'],
+     },
 ]
