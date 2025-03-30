@@ -3,6 +3,7 @@ import SellerDashboard from '../../views/seller/SellerDashboard';
 import AddProduct from '../../views/seller/AddProduct';
 import Product from '../../views/seller/Product';
 import DiscountProducts from '../../views/seller/DiscountProducts';
+import Orders from '../../views/seller/Orders';
 
 
 export const sellerRoutes = [
@@ -29,6 +30,11 @@ export const sellerRoutes = [
      {
       path: '/seller/dashboard/discount-product',  
       element: <DiscountProducts/>, 
+      ability: ['seller'],
+     },
+     {
+      path: '/seller/dashboard/orders',  
+      element: <Orders/>, 
       ability: ['seller'],
      },
 ]

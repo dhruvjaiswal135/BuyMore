@@ -78,9 +78,11 @@ const Orders = () => {
               </div>
             </div>
           </div>
+
           <div className="text-xs text-[#000000]  text-center uppercase border-b">
             <div className="py-1 flex justify-between items-start ">
               <div className="py-3 w-[25%]  whitespace-nowrap text-gray-400 font-normal">
+                
                 #34543
               </div>
               <div className="py-3 w-[25%] font-light">Denim Jeans</div>

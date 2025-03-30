@@ -14,7 +14,7 @@ const Search1 = ({setPerpage, searchValue,setSearchValue}) => {
                       type="text"
                       name="search"
                       placeholder="Search by order id, product, category or others..."
-                      className="block w-full pl-10 pr-3 py-2 border font-light border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
+                      className="block w-full pl-10 pr-3 py-2 border font-light border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none  focus:border-[#3938ab] text-xs"
                     />
                   </div>
                   {/* Select */}

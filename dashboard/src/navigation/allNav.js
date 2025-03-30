@@ -108,7 +108,7 @@ export const allNav = [
         title: 'Orders',
         icon: <FiShoppingBag/>,
         role : 'seller',
-        path: '/seller/orders',
+        path: '/seller/dashboard/orders',
     },
     {
         id: 15,
