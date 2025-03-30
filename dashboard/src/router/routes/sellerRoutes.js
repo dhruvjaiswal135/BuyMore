@@ -1,6 +1,8 @@
 import Home from '../../views/pages/Home';
 import SellerDashboard from '../../views/seller/SellerDashboard';
 import AddProduct from '../../views/seller/AddProduct';
+import Product from '../../views/seller/Product';
+import DiscountProducts from '../../views/seller/DiscountProducts';
 
 
 export const sellerRoutes = [
@@ -17,6 +19,16 @@ export const sellerRoutes = [
      {
       path: '/seller/add-product',  
       element: <AddProduct/>, 
+      ability: ['seller'],
+     },
+     {
+      path: '/seller/dashboard/products',  
+      element: <Product/>, 
+      ability: ['seller'],
+     },
+     {
+      path: '/seller/dashboard/discount-product',  
+      element: <DiscountProducts/>, 
       ability: ['seller'],
      },
 ]

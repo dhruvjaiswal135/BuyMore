@@ -32,6 +32,7 @@ const Category = () => {
             <CiSearch />
           </span>
           <input
+          
             className="rounded-full px-12 py-2 w-full text-black font-light text-[13px]
                                   outline-none border focus:border-[#3948ab] focus:bg-white
                                   overflow-hidden focus:text-[#000000] focus:text-opacity-5 

@@ -94,14 +94,14 @@ export const allNav = [
         title: 'All Product',
         icon: <BsCartCheck/>,
         role : 'seller',
-        path: '/seller/all-product',
+        path: '/seller/dashboard/products',
     },
     {
         id: 13,
         title: 'Discount Product',
         icon: <MdOutlineDiscount/>,
         role : 'seller',
-        path: '/seller/discount-product',
+        path: '/seller/dashboard/discount-product',
     },
     {
         id: 14,
