@@ -1,3 +1,5 @@
+//react window is used
+
 import React, { forwardRef } from "react";
 import { FixedSizeList as List } from "react-window";
 import { CiSearch } from "react-icons/ci";

@@ -118,12 +118,12 @@ const AddProduct = () => {
             </div>
           </div>
           <div className="gap-2 flex">
-            <Link className="rounded-md px-3 py-2 text-xs text-red-700 border border-red-700">
+            <button className="rounded-md px-3 py-2 text-xs text-red-700 border border-red-700">
               Discard Changes
-            </Link>
-            <Link to='seller/dashboard/products' className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white">
+            </button>
+            <button to='seller/dashboard/products' className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white">
               All Product
-            </Link>
+            </button>
           </div>
         </div>
         <div className="w-full flex flex-wrap mt-5 justify-between g">

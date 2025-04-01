@@ -115,28 +115,28 @@ export const allNav = [
         title: 'Payments',
         icon: <MdPayment/>,
         role : 'seller',
-        path: '/seller/payments',
+        path: '/seller/dashboard/payments',
     },
     {
         id: 16,
         title: 'Chat Customer',
         icon: <MdOutlineMarkUnreadChatAlt/>,
         role : 'seller',
-        path: '/seller/chat-customer',
+        path: '/seller/dashboard/chat-customer',
     },
     {
         id: 17,
         title: 'Chat Support',
         icon: <BiSupport/>,
         role : 'seller',
-        path: '/seller/chat-support',
+        path: '/seller/dashboard/chat-support',
     },
     {
         id: 18,
-        title: 'Settings',
+        title: 'Setting',
         icon: <MdOutlineSettings/>,
         role : 'seller',
-        path: '/seller/settings',
+        path: '/seller/dashboard/setting',
     },
 
 

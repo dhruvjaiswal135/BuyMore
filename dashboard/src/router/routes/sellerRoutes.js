@@ -4,6 +4,10 @@ import AddProduct from '../../views/seller/AddProduct';
 import Product from '../../views/seller/Product';
 import DiscountProducts from '../../views/seller/DiscountProducts';
 import Orders from '../../views/seller/Orders';
+import Payments from '../../views/seller/Payments';
+import SellerToCustomer from '../../views/seller/SellerToCustomer';
+import SellerToAdmin from '../../views/seller/SellerToAdmin';
+import Setting from '../../views/seller/Setting';
 
 
 export const sellerRoutes = [
@@ -15,26 +19,60 @@ export const sellerRoutes = [
      {
       path: '/seller/dashboard',  
       element: <SellerDashboard/>, 
-      ability: ['seller'],
+      role: 'seller',
+      status : 'active'
      },
      {
       path: '/seller/add-product',  
       element: <AddProduct/>, 
-      ability: ['seller'],
+      role: 'seller',
+      status : 'active'
      },
      {
       path: '/seller/dashboard/products',  
       element: <Product/>, 
-      ability: ['seller'],
+      role: 'seller',
+      status : 'active'
      },
      {
       path: '/seller/dashboard/discount-product',  
       element: <DiscountProducts/>, 
-      ability: ['seller'],
+      role: 'seller',
+      status : 'active'
      },
      {
       path: '/seller/dashboard/orders',  
       element: <Orders/>, 
-      ability: ['seller'],
+      role: 'seller',
+      ability : ['active','deactive'] //seller can access orders while deactive
+     },
+     {
+      path: '/seller/dashboard/payments',  
+      element: <Payments/>, 
+      role: 'seller',
+      status : 'active'
+     },
+     {
+      path: '/seller/dashboard/chat-support',  
+      element: <SellerToAdmin/>, 
+      ability : ['active','deactive','pending']
+     },
+     {
+      path: '/seller/dashboard/chat-customer/:customerId',  
+      element: <SellerToCustomer/>, 
+      role: 'seller',
+      status : 'active'
+     },
+     {
+      path: '/seller/dashboard/chat-customer',  
+      element: <SellerToCustomer/>, 
+      role: 'seller',
+      status : 'active'
+     },
+     {
+      path: '/seller/dashboard/setting',  
+      element: <Setting/>, 
+      role: 'seller',
+      status : 'active'
      },
 ]
