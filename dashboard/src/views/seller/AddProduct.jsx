@@ -126,7 +126,7 @@ const AddProduct = () => {
             </button>
           </div>
         </div>
-        <div className="w-full flex flex-wrap mt-5 justify-between g">
+        <div className="w-full flex flex-wrap mt-5 justify-between ">
           <div className="w-full lg:w-7/12 lg:pr-3 ">
             <div className="p-4 shadow-md rounded-md border mb-5 border-gray-50">
               <h1>General Information</h1>
