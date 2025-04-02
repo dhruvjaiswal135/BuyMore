@@ -8,6 +8,7 @@ import Payments from '../../views/seller/Payments';
 import SellerToCustomer from '../../views/seller/SellerToCustomer';
 import SellerToAdmin from '../../views/seller/SellerToAdmin';
 import Setting from '../../views/seller/Setting';
+import EditProduct from '../../views/seller/EditProduct';
 
 
 export const sellerRoutes = [
@@ -23,8 +24,14 @@ export const sellerRoutes = [
       status : 'active'
      },
      {
-      path: '/seller/add-product',  
+      path: '/seller/dashboard/add-product',  
       element: <AddProduct/>, 
+      role: 'seller',
+      status : 'active'
+     },
+     {
+      path: '/seller/dashboard/edit-product/:productId',  
+      element: <EditProduct/>, 
       role: 'seller',
       status : 'active'
      },

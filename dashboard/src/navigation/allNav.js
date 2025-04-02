@@ -87,7 +87,7 @@ export const allNav = [
         title: 'Add Product',
         icon: <MdAddShoppingCart/>,
         role : 'seller',
-        path: '/seller/add-product',
+        path: '/seller/dashboard/add-product',
     },
     {
         id: 12,

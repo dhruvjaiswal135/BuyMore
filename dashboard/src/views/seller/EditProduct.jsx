@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IoMdArrowDropright,
   IoMdCloseCircle,
@@ -6,7 +6,7 @@ import {
 } from "react-icons/io";
 import { Link } from "react-router-dom";
 
-const AddProduct = () => {
+const EditProduct = () => {
   const categories = [
     {
       id: 1,
@@ -72,60 +72,63 @@ const AddProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imageShow, setImageShow] = useState([]);
-  const imageHandle = (e) => {
-    const files = e.target.files;
-    const length = files.length;
-    if (length > 0) {
-      setImages([...images, ...files]);
-      let imageUrl = [];
-      for (let i = 0; i < length; i++) {
-        imageUrl.push({ url: URL.createObjectURL(files[i]) });
-        setImageShow([...imageShow, ...imageUrl]);
-      }
-    }
-    console.log(images);
-  };
+  
 
-  const changeImage = (img, index) => {
-    if (img) {
-      let tempUrl = imageShow;
-      let tempImage = images;
-      tempImage[index] = img;
-      tempUrl[index] = { url: URL.createObjectURL(img) };
-      setImageShow([...tempUrl]);
-      setImages([...tempImage]);
+  const changeImage = (img, files) => {
+    if(files.length>0){
+        console.log(img)
+        console.log(files[0])
     }
   };
-  const removeImage = (i) => {
-    const filterImage = images.filter((img, index) => index !== i);
-    const filterImageUrl = imageShow.filter((img, index) => index !== i);
+  
+  // for editing the existing values
 
-    setImages(filterImage);
-    setImageShow(filterImageUrl);
-  };
+  useEffect(() => {
+    setState({
+      name: "Men's Tshirt ",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident eos totam, quam rerum atque alias reprehenderit esse perspiciatis culpa blanditiis!",
+      baseprice: "4500",
+      discountpercentage: "20",
+      couponcode: "FREE20",
+      prodimage: "",
+      category: "Tshirt",
+      brand: "H&M",
+      stock: "10",
+    });
+    setCategory("Tshirt");
+    setImageShow([
+      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/item/goods_71_465185_3x4.jpg?width=369",
+      "https://image.uniqlo.com/UQ/ST3/in/imagesgoods/465185/sub/ingoods_465185_sub17_3x4.jpg?width=369",
+      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/sub/goods_465185_sub14_3x4.jpg?width=369",
+    ]);
+  }, []);
   return (
     <div className="px-2 sm:px-6 lg:px-4 py-9">
       <div className="w-full p-4 rounded-md ">
         <div className="flex justify-between items-center p-4 border border-gray-50 rounded-lg shadow-md">
-        <div className="w-full">
-  <h1 className="font-normal text-lg mb-1">Add Product</h1>
-  
-  {/* Breadcrumb Navigation */}
-  <div className="flex flex-wrap items-center gap-1 text-xs font-normal">
-    <h1 className="text-[#3948ab]">Dashboard</h1>
-    <IoMdArrowDropright className="text-gray-500" />
-    <h1 className="text-[#3948ab]">Product List</h1>
-    <IoMdArrowDropright className="text-gray-500" />
-    <h1 className="text-gray-500">Add Product</h1>
-  </div>
-</div>
+          <div className="w-full">
+            <h1 className="font-normal text-lg mb-1">Edit Product</h1>
+
+            {/* Breadcrumb Navigation */}
+            <div className="flex flex-wrap items-center gap-1 text-xs font-normal">
+              <h1 className="text-[#3948ab]">Dashboard</h1>
+              <IoMdArrowDropright className="text-gray-500" />
+              <h1 className="text-[#3948ab]">Product List</h1>
+              <IoMdArrowDropright className="text-gray-500" />
+              <h1 className="text-gray-500">Edit Product</h1>
+            </div>
+          </div>
 
           <div className="gap-2 flex">
             <button className="rounded-md px-3 py-2 text-xs text-red-700 border border-red-700">
               Discard Changes
             </button>
-            <button to='seller/dashboard/products' className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white">
-              All Product
+            <button
+              to="seller/dashboard/products"
+              className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white"
+            >
+              Save Changes
             </button>
           </div>
         </div>
@@ -281,55 +284,41 @@ const AddProduct = () => {
                 <h2 className="text-xs mt-2 text-gray-500">Photo Product</h2>
 
                 {/* Image Grid */}
-                <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full mt-3">
-                  {imageShow.map((img, i) => (
-                    <div
-                      key={i}
-                      className="relative group w-full aspect-square overflow-hidden rounded-md shadow-md border border-gray-200"
-                    >
-                      <label
-                        htmlFor={`image-${i}`}
-                        className="cursor-pointer block w-full h-full"
-                      >
-                        <img
-                          className="w-full h-full object-cover rounded-md group-hover:opacity-80 transition-opacity"
-                          src={img.url}
-                          alt="Product"
-                        />
-                      </label>
-                      <input
-                        onChange={(e) => changeImage(e.target.files[0], i)}
-                        type="file"
-                        id={`image-${i}`}
-                        className="hidden"
-                      />
-                      {/* Delete Button */}
-                      <span
-                        onClick={() => removeImage(i)}
-                        className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 shadow-md cursor-pointer opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <IoMdCloseCircle size={20} />
-                      </span>
-                    </div>
-                  ))}
+                <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 w-full mt-3">
+  {imageShow.map((img, i) => (
+    <div key={i} className="relative">
+      <label htmlFor={`image-${i}`} className="block">
+        <img 
+          src={img}
+          className="w-full sm:w-24 md:w-28 lg:w-full aspect-square object-cover rounded-md border border-gray-300"
+          alt="Product"
+        />
+      </label>
+      <input
+        onChange={(e) => changeImage(i, e.target.files[0])}
+        type="file"
+        id={`image-${i}`}
+        className="hidden"
+      />
+    </div>
+  ))}
 
-                  {/* Product Photo Upload Box */}
-                  <label
-                    htmlFor="prodimage"
-                    className="flex flex-col justify-center items-center w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
-                  >
-                    <IoMdImages size={30} />
-                    <span className="mt-1 text-xs">Select Image</span>
-                  </label>
-                  <input
-                    multiple
-                    onChange={imageHandle}
-                    type="file"
-                    name="prodimage"
-                    id="prodimage"
-                    className="hidden"
-                  />
-                </div>
+  {/* Product Photo Upload Box */}
+  <label
+    htmlFor="prodimage"
+    className="flex flex-col justify-center items-center w-full sm:w-24 md:w-28 lg:w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
+  >
+    <IoMdImages size={24} className="sm:size-16 md:size-10 lg:size-10" />
+    <span className="mt-1 text-xs md:text-[10px]">Select Image</span>
+  </label>
+  <input
+    type="file"
+    name="prodimage"
+    id="prodimage"
+    className="hidden"
+  />
+</div>
+
               </div>
             </div>
 
@@ -465,4 +454,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;

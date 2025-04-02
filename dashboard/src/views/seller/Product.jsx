@@ -4,6 +4,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { FiMoreHorizontal } from "react-icons/fi";
 import Pagination from "../Pagination";
+import { Link } from 'react-router-dom';
 
 // Product Data (Example)
 const products = [
@@ -104,15 +105,15 @@ const Product = () => {
                   {/* Dropdown Menu */}
                   {openDropdown === product.id && (
                     <div className="absolute right-0 mt-2 flex flex-col gap-2 bg-white p-2 rounded-full shadow-lg transition-all duration-200 opacity-100 scale-100">
-                      <button className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
+                      <Link className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
                         <AiOutlineEye size={14} className="text-gray-700" />
-                      </button>
-                      <button className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
+                      </Link>
+                      <Link to={`/seller/dashboard/edit-product/32`} className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
                         <MdOutlineEdit size={14} className="text-gray-700" />
-                      </button>
-                      <button className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
+                      </Link>
+                      <Link className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
                         <AiOutlineDelete size={14} className="text-gray-700" />
-                      </button>
+                      </Link>
                     </div>
                   )}
                 </div>
