@@ -5,129 +5,114 @@ import { admin_login, messageClear } from "../../store/reducers/authReducer";
 import { PropagateLoader } from "react-spinners";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { overrideStyle } from "../../utilities/utlis";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loader, errorMessage,successMessage } = useSelector((state) => state.auth || {});
-  
-  // for loading the admin login button.
-  //to get all the data{name,email,password} from the form and store it in the state variable in the form of an object with the help of useState hook.
+  const { loader, errorMessage, successMessage } = useSelector((state) => state.auth || {});
+
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+
   const inputHandle = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
   };
+
   const submit = (e) => {
     e.preventDefault();
-    //console.log("Dispatching login with:", state);
     dispatch(admin_login(state));
   };
-  const overrideStyle = {
-    display: "flex",
-    alignItems: "center",
-    margin: "0 auto",
-    height: "24px",
-    justifyContent: "center",
-  };
 
-  useEffect(()=>{
-    if(errorMessage){
+  
+  useEffect(() => {
+    if (errorMessage) {
       toast.error(errorMessage);
       dispatch(messageClear());
     }
     if (successMessage) {
       toast.success(successMessage);
-      dispatch(messageClear()); 
-      navigate('/');     
+      dispatch(messageClear());
+      navigate("/");
     }
-  }, [errorMessage,successMessage]);
+  }, [errorMessage, successMessage]);
 
   return (
-    <div className="h-fit">
-      <div className="flex max-md:flex-col h-fit">
-        <div className=" flex justify-center items-center h-screen  w-3/5 ">
-          <div className="flex flex-col items-center  ">
-            <div>
-              <img
-                //loading="lazy"
-                src={image}
-                alt="Authentication illustration"
-                className="w-[540px]"
+    <div className="flex flex-col md:flex-row h-screen w-full bg-gradient-to-br from-[#1E3A8A] via-[#3B82F6] to-[#60A5FA]">
+      {/* Left Side (Image & Text) */}
+      <div className="md:w-1/2 flex flex-col justify-center items-center text-white p-8 md:p-12">
+        <img
+          src={image}
+          alt="Admin Panel"
+          className="w-[60%] md:w-[75%] max-w-sm drop-shadow-lg"
+        />
+        <h1 className="text-3xl font-bold mt-5 text-center drop-shadow-md">
+          Welcome to Admin Panel
+        </h1>
+        <p className="text-lg text-center font-light mt-2 drop-shadow-md">
+          Please log in to continue
+        </p>
+      </div>
+
+      {/* Right Side (Form) */}
+      <div className="md:w-1/2 flex justify-center items-center p-6 md:p-12">
+        <div className="w-full max-w-md bg-white/10 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-white/20">
+          <h1 className="text-3xl font-bold text-center text-white mb-6">
+            Admin Login
+          </h1>
+
+          <form onSubmit={submit}>
+            {/* Email Input */}
+            <div className="mb-5">
+              <label htmlFor="email" className="text-white text-sm font-semibold">Email</label>
+              <input
+                onChange={inputHandle}
+                value={state.email}
+                className="w-full px-4 py-3 mt-1 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 outline-none focus:ring-2 focus:ring-blue-300"
+                type="text"
+                name="email"
+                placeholder="Enter your email"
+                id="email"
+                required
               />
             </div>
-            <div className="mt-5">
-              <h1 className="text-3xl font-semibold text-[#3948ab]">
-                Welcome to Admin Panel
-              </h1>
-              <p className="font-light text-center text-[#3948ab]">
-                Please Log in to continue
-              </p>
-            </div>
-          </div>
-          <div className="flex overflow-hidden z-10 gap-2.5 justify-center items-center py-20 pr-5 pl-9 mt-0 rounded-[182px] max-md:pl-5 max-md:mt-0" />
-        </div>
-        <div className="flex justify-center items-center  w-2/5 ">
-          <div className="w-[396px] border-4 border-double border-[#3948ab] rounded-xl p-10">
-            <div className="text-center text-3xl font-bold mb-20 text-[#00227B] ">
-              <h1>Log In</h1>
-            </div>
-            <div>
-              <form onSubmit={submit}>
-                <div className="flex flex-col w-full gap-1 mb-3">
-                  <label htmlFor="email"></label>
-                  <input
-                    onChange={inputHandle}
-                    value={state.email}
-                    className="px-3 py-2 outline-none border border-slate-300
-                        bg-transparent rounded-md"
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    id="email"
-                    required
-                  />
-                </div>
 
-                <div className="flex flex-col w-full gap-1 mb-3">
-                  <label htmlFor="password"></label>
-                  <input
-                    onChange={inputHandle}
-                    value={state.password}
-                    className="px-3 py-2 outline-none border border-slate-300
-                        bg-transparent rounded-md"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    id="password"
-                    required
-                  />
-                </div>
-                <button
-                  disabled={loader ? true : false} // to disable the button when the loader is true.
-                  className="bg-[#3949AB] w-full hover:shadow-[#3949AB]
-                    hover: shadow-md text-white  rounded-md px-7 py-2 mb-3 "
-                >
-                  {loader ? (
-                    <PropagateLoader
-                      cssOverride={overrideStyle}
-                      color="#ffffff"
-                    />
-                  ) : (
-                    "Log In"
-                  )}
-                </button>
-              </form>
+            {/* Password Input */}
+            <div className="mb-5">
+              <label htmlFor="password" className="text-white text-sm font-semibold">Password</label>
+              <input
+                onChange={inputHandle}
+                value={state.password}
+                className="w-full px-4 py-3 mt-1 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/60 outline-none focus:ring-2 focus:ring-blue-300"
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                id="password"
+                required
+              />
             </div>
-          </div>
+
+            {/* Login Button */}
+            <button
+              disabled={loader ? true : false}
+              className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-600 flex items-center justify-center"
+            >
+              {loader ? (
+                <PropagateLoader color="#ffffff" cssOverride={overrideStyle} size={8} />
+              ) : (
+                "Log In"
+              )}
+            </button>
+          </form>
         </div>
       </div>
     </div>
   );
 };
+
 export default AdminLogin;

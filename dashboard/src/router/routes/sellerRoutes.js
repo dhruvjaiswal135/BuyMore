@@ -9,6 +9,7 @@ import SellerToCustomer from '../../views/seller/SellerToCustomer';
 import SellerToAdmin from '../../views/seller/SellerToAdmin';
 import Setting from '../../views/seller/Setting';
 import EditProduct from '../../views/seller/EditProduct';
+import OrderDetails from '../../views/seller/OrderDetails';
 
 
 export const sellerRoutes = [
@@ -50,6 +51,12 @@ export const sellerRoutes = [
      {
       path: '/seller/dashboard/orders',  
       element: <Orders/>, 
+      role: 'seller',
+      ability : ['active','deactive'] //seller can access orders while deactive
+     },
+     {
+      path: '/seller/dashboard/order/details/:orderId',  
+      element: <OrderDetails/>, 
       role: 'seller',
       ability : ['active','deactive'] //seller can access orders while deactive
      },
