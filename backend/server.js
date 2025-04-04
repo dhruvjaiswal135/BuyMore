@@ -11,7 +11,7 @@ const { dbConnect } = require("./utilites/db");
 app.use(
   cors({
     // change was 5173 instead of 3000
-    origin: ["http://localhost:3001"],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );
