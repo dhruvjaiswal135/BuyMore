@@ -27,7 +27,26 @@ export const seller_register = createAsyncThunk(      // for seller register
       const { data } = await api.post("/seller_register", info, {
         withCredentials: true,
       });
-      //localStorage.setItem('accessToken', data.token);
+      localStorage.setItem('accessToken', data.token);
+      //console.log(data);
+      return fulfillWithValue(data);
+    } catch (error) {
+      //console.log(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+
+export const seller_login = createAsyncThunk(
+  "auth/seller_login",
+  async (info, { rejectWithValue, fulfillWithValue }) => {
+    console.log(info);
+    try {
+      const { data } = await api.post("/seller_login", info, {
+        withCredentials: true,
+      });
+      localStorage.setItem('accessToken', data.token);
       console.log(data);
       return fulfillWithValue(data);
     } catch (error) {
@@ -62,6 +81,30 @@ export const authReducer = createSlice({
     })
     
       .addCase(admin_login.fulfilled, (state, { payload }) => {
+        state.loader = false;
+        state.successMessage = payload.message;
+      })
+      .addCase(seller_register.pending, (state, { payload }) => {
+        state.loader = true;
+      })
+      .addCase(seller_register.rejected, (state, { payload }) => {
+        state.loader = false;
+        state.errorMessage = payload?.error || "Login failed. Please try again.";
+    })
+    
+      .addCase(seller_register.fulfilled, (state, { payload }) => {
+        state.loader = false;
+        state.successMessage = payload.message;
+      })
+      .addCase(seller_login.pending, (state, { payload }) => {
+        state.loader = true;
+      })
+      .addCase(seller_login.rejected, (state, { payload }) => {
+        state.loader = false;
+        state.errorMessage = payload?.error || "Login failed. Please try again.";
+    })
+    
+      .addCase(seller_login.fulfilled, (state, { payload }) => {
         state.loader = false;
         state.successMessage = payload.message;
       });

@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import { IoLogoGitlab } from "react-icons/io5";
+import { PropagateLoader } from "react-spinners";
+import toast from "react-hot-toast";
+import { overrideStyle } from "../../utilities/utlis";
+import { useDispatch, useSelector } from "react-redux";
+import { seller_login, messageClear } from "../../store/reducers/authReducer";
+
 
 const Login = () => {
+    const dispatch = useDispatch();
+  const { loader, errorMessage, successMessage } = useSelector((state) => state.auth || {});
+
     const [state, setState] = useState({
         email: "",
         password: "",
@@ -18,8 +27,21 @@ const Login = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        console.log(state);
+        dispatch(seller_login(state))
     };
+
+    useEffect(() =>{
+        if (successMessage) {
+            toast.success(successMessage);
+            dispatch(messageClear());
+            
+          }
+        if (errorMessage) {
+            toast.error(errorMessage);
+            dispatch(messageClear());
+          }
+          
+    },[successMessage, errorMessage])
 
     return (
         <div className="h-screen flex flex-col md:flex-row items-center justify-center bg-gray-100">
@@ -60,10 +82,15 @@ const Login = () => {
                             />
                         </div>
                         <button
-                            className="bg-[#3949AB] w-full text-white py-2 rounded-md hover:bg-[#303f9f] transition"
-                        >
-                            Log In
-                        </button>
+              disabled={loader ? true : false}
+              className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-600 flex items-center justify-center"
+            >
+              {loader ? (
+                <PropagateLoader color="#ffffff" cssOverride={overrideStyle} size={8} />
+              ) : (
+                "Log In"
+              )}
+            </button>
                     </form>
                     <div className="text-center mt-4">
                         <p>New user? <Link className="font-bold text-[#3949AB]" to="/register">Register here</Link></p>
