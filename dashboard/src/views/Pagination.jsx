@@ -5,10 +5,10 @@ import {
 } from "react-icons/md";
 
 const Pagination = ({pageNumber,setPageNumber,totalItem,perPage,showItem,}) => {
-    console.log("Total Pages:", totalItem, "Current Page:", perPage);
+    //console.log("Total Pages:", totalItem, "Current Page:", perPage);
     let totalPage = Math.ceil(totalItem / perPage);
     let startPage = pageNumber;
-    console.log("Total Pages:", totalPage, "Current Page:", pageNumber);
+    //console.log("Total Pages:", totalPage, "Current Page:", pageNumber);
     let dif = totalPage - pageNumber;
     if (dif <= showItem) {
         startPage = totalPage - showItem;

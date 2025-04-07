@@ -10,10 +10,24 @@ import SellerToAdmin from '../../views/seller/SellerToAdmin';
 import Setting from '../../views/seller/Setting';
 import EditProduct from '../../views/seller/EditProduct';
 import OrderDetails from '../../views/seller/OrderDetails';
+import Pending from '../../views/Pending';
+import Deactive from '../../views/Deactive';
 
 
 export const sellerRoutes = [
      
+     {
+          path: '/seller/account-pending',  
+          element: <Pending/>, 
+          ability: 'seller',
+          
+     },
+     {
+          path: '/seller/account-deactive',  
+          element: <Deactive/>, 
+          roabilityle: 'seller',
+          
+     },
      {
       path: '/seller/dashboard',  
       element: <SellerDashboard/>, 
@@ -48,13 +62,13 @@ export const sellerRoutes = [
       path: '/seller/dashboard/orders',  
       element: <Orders/>, 
       role: 'seller',
-      ability : ['active','deactive'] //seller can access orders while deactive
+      visibilty : ['active','deactive'] //seller can access orders while deactive
      },
      {
       path: '/seller/dashboard/order/details/:orderId',  
       element: <OrderDetails/>, 
       role: 'seller',
-      ability : ['active','deactive'] //seller can access orders while deactive
+      visibilty : ['active','deactive'] //seller can access orders while deactive
      },
      {
       path: '/seller/dashboard/payments',  
@@ -66,7 +80,7 @@ export const sellerRoutes = [
       path: '/seller/dashboard/chat-support',  
       element: <SellerToAdmin/>, 
       role: 'seller',
-      ability : ['active','deactive','pending']
+      visibilty : ['active','deactive','pending']
      },
      {
       path: '/seller/dashboard/chat-customer/:customerId',  

@@ -7,13 +7,45 @@ import Pagination from "../Pagination";
 import { MdOutlineEdit } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoImageOutline } from "react-icons/io5";
+import { PropagateLoader } from "react-spinners";
+import { overrideStyle } from "../../utilities/utlis";
+import { categoryAdd } from "../../store/reducers/categoryReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 const Category = () => {
+
+  const dispatch = useDispatch()
+  const {loader} = useSelector((state)=>state.category)
+
   const [isOpen, setIsOpen] = useState(false);  //used for modal
   const [perpage, setPerpage] = useState(5);
   const [currentPage, setCurrentPage] = useState(1); //used for pagination
   const [show, setShow] = useState(false); //for dropdown menu in action's next column
+  const [imageShow, setImage] = useState('')
 
+  const [state, setState] = useState({
+    name: '',
+    image: ''
+  })
+
+  const imageHandle = (e) => {
+    let files = e.target.files
+    if (files.length >0) {
+      setImage(URL.createObjectURL(files[0]))
+      setState({
+        ...state,
+        image: files[0]
+      })
+    }
+  }
+
+  const add_category = (e)=>{
+    e.preventDefault()
+    dispatch(categoryAdd(state))
+    console.log(state)
+  }
+
+ 
   return (
     <div className="px-4 sm:px-6 lg:px-12 pt-9 ">
       <div className="text-center">
@@ -231,6 +263,7 @@ const Category = () => {
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-50">
           {/* Modal Container */}
+          
           <div className="bg-white shadow-xl rounded-2xl p-6 w-[400px] relative animate-fade-in">
             {/* Close Button */}
             <button
@@ -244,13 +277,16 @@ const Category = () => {
             <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
               Add New Category
             </h2>
-
+<div>
+  <form onSubmit={add_category}>
             {/* Category Name Input */}
             <div className="mb-4">
               <label className="block text-gray-700 font-medium mb-1">
                 Category Name
               </label>
               <input
+              value = {state.name} 
+              onChange={(e)=>setState({...state,name: e.target.value})}
                 type="text"
                 placeholder="Enter category name..."
                 className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3948ab] transition"
@@ -258,26 +294,54 @@ const Category = () => {
             </div>
 
             {/* Image Upload Section */}
-            <div className="mb-4 flex flex-col items-center">
-              <label className="block text-gray-700 font-medium mb-2">
-                Upload Image
-              </label>
-              <div htmlFor="image" className="w-full h-32 gap-2 items-center justify-center flex border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-[#3948ab] transition">
-                <label htmlFor="image">
-                <input className="hidden" type="file" name="image" id="image" />
-                <span ><IoImageOutline className="justify-center w-full" /></span>
-                <span className="text-gray-500 "> Select Image</span>
-                </label>
-              </div>
-            </div>
+            <div className="mb-4 flex flex-col items-center w-full">
+                        <label className="block text-gray-700 font-medium mb-2">
+                          Upload Image
+                        </label>
+
+                        <label
+                          htmlFor="image"
+                          className="w-full h-32 flex items-center justify-center border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-[#3948ab] transition overflow-hidden"
+                        >
+                          {imageShow ? (
+                            <img
+                              src={imageShow}
+                              alt="Uploaded preview"
+                              className="h-full object-contain"
+                            />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center text-gray-500">
+                              <IoImageOutline className="text-3xl mb-1" />
+                              <span>Select Image</span>
+                            </div>
+                          )}
+                          <input
+                            onChange={imageHandle}
+                            className="hidden"
+                            type="file"
+                            name="image"
+                            id="image"
+                          />
+                        </label>
+                      </div>
+
 
             {/* Buttons */}
             <div className="w-full flex justify-end gap-4 mt-6">
               
-              <button className="px-5 w-full py-2 rounded-lg bg-[#3948ab] text-white hover:bg-[#2f3c8e] transition">
-                Add Category
-              </button>
+            <button
+              disabled={loader ? true : false}
+              className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-600 flex items-center justify-center"
+            >
+              {loader ? 
+                <PropagateLoader color="#ffffff" cssOverride={overrideStyle}  />
+               : (
+                "Add Category"
+              )}
+            </button>
             </div>
+          
+          </form></div>
           </div>
         </div>
       )}

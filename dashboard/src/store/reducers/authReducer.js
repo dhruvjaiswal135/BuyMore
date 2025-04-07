@@ -93,12 +93,13 @@ return ''
 export const authReducer = createSlice({
   name: "auth",
   initialState: {
-    loader: false,
-  errorMessage: '',  // Ensure errorMessage is always present
-  successMessage: '',
-    userInfo: '',
-    role: returnRole(localStorage.getItem('accessToken')),
-    token: localStorage.getItem('accessToken')
+    successMessage: '',
+      loader: false,
+      errorMessage: '',  // Ensure errorMessage is always present
+      
+      userInfo: '',
+      role: returnRole(localStorage.getItem('accessToken')),
+      token: localStorage.getItem('accessToken')
   },
   reducers: {
     messageClear: (state, _) => {
