@@ -20,7 +20,10 @@ app.use(
 app.use(bodyParser.json());
 // Middleware to parse cookies from the incoming request headers.
 app.use(cookieParser());
+
+
 app.use("/api", require("./routes/authroutes"));
+app.use("/api", require("./routes/dashboard/categoryRoute"));
 app.get("/", (req, res) => res.send("My backend"));
 //to access the environment variables
 const port = process.env.PORT;

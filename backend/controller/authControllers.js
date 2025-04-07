@@ -107,7 +107,7 @@ class authControllers {
         responseReturn(res, 404, { error: "Email not found" });
       }
     } catch (error) {
-      responseReturn(res, 500, { error: error.message });
+      responseReturn(res, 500, { error: 'Internal server error' });
     }
   };
   //End Method
@@ -118,10 +118,11 @@ class authControllers {
         const user = await adminModel.findById(id);
         responseReturn(res, 200, { userInfo: user });
       } else {
-        console.log("Seller Info");
+        const seller = await sellerModel.findById(id);
+        responseReturn(res, 200, { userInfo: seller });
       }
     } catch (error) {
-      console.log(error.message);
+      responseReturn(res, 500, { error: 'Internal server error' });
     }
   };
 }
