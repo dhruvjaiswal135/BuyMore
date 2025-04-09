@@ -9,7 +9,7 @@ export const categoryAdd = createAsyncThunk(
         const formData = new FormData()
         formData.append('name', name)
         formData.append('image', image)
-      const { data } = await api.post("/category-add", info, {
+      const { data } = await api.post("/category-add", formData, {
         withCredentials: true,
       });
       
@@ -23,6 +23,23 @@ export const categoryAdd = createAsyncThunk(
 );
 
 
+export const get_category = createAsyncThunk(
+    "category/get_category",
+    async ({perpage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
+      
+      try {
+        const { data } = await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&perpage=${perpage}`, 
+            {withCredentials: true,});
+        
+        console.log(data);
+        return fulfillWithValue(data);
+      } catch (error) {
+        //console.log(error.response.data);
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+
 export const categoryReducer = createSlice({
   name: 'category',
   initialState: {
@@ -30,6 +47,7 @@ export const categoryReducer = createSlice({
       loader: false,
       errorMessage: '',  // Ensure errorMessage is always present
       categories: [ ],
+      totalCategory: 0
   },
   reducers: {
     messageClear: (state, _) => {
@@ -47,12 +65,16 @@ export const categoryReducer = createSlice({
         state.errorMessage = payload?.error ;
     })
     
-    //   .addCase(admin_login.fulfilled, (state, { payload }) => {
-    //     state.loader = false;
-    //     state.successMessage = payload.message;
-    //     state.token = payload.token;
-    //     state.role = returnRole(payload.token);
-    //   })
+      .addCase(categoryAdd.fulfilled, (state, { payload }) => {
+        state.loader = false;
+        state.successMessage = payload.message;
+        state.categories = [...state.categories, payload.category]
+      })
+
+      .addCase(get_category.fulfilled, (state, { payload }) => {
+        state.totalCategory = payload.totalCategory;
+        state.categories = payload.categories;
+      })
       
   },
 });
