@@ -66,11 +66,15 @@ const Product = () => {
         </div>
 
         {/* Search Component */}
-        <Search2
-          setPerpage={setPerPage}
-          setSearchValue={setSearchValue}
-          searchValue={searchValue}
-        />
+        <div className="w-full flex justify-center pt-6">
+  <div className="w-full max-w-xl">
+    <Search2
+      setPerpage={setPerPage}
+      setSearchValue={setSearchValue}
+      searchValue={searchValue}
+    />
+  </div>
+</div>
 
         {/* Product List */}
         <div className="flex flex-wrap mt-5 justify-center gap-6 p-4">
