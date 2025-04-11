@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { useState, useEffect } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import Pagination from "../Pagination";
-import { MdOutlineEdit } from "react-icons/md";
+import { MdCategory, MdOutlineEdit } from "react-icons/md";
 import { IoCloseOutline } from "react-icons/io5";
 import { IoImageOutline } from "react-icons/io5";
 import { PropagateLoader } from "react-spinners";
@@ -20,13 +20,15 @@ import Search2 from "../component/Search2";
 
 const Category = () => {
   const dispatch = useDispatch();
-  const { loader, successMessage, errorMessage, categories } = useSelector(
+  const { loader, successMessage, errorMessage, categories,totalCategory } = useSelector(
     (state) => state.category
   );
 
+  
+
   const [isOpen, setIsOpen] = useState(false); //used for modal
   const [searchValue, setSearchValue] = useState("");
-  const [perpage, setPerpage] = useState(5);
+  const [perPage, setPerpage] = useState(4); //4 prod on one page
   const [currentPage, setCurrentPage] = useState(1); //used for pagination
   const [show, setShow] = useState(false); //for dropdown menu in action's next column
   const [imageShow, setImage] = useState("");
@@ -34,6 +36,9 @@ const Category = () => {
   const [state, setState] = useState({
     name: "",
     image: "",
+    price: "",           
+    description: "", 
+
   });
 
   const imageHandle = (e) => {
@@ -60,6 +65,8 @@ const Category = () => {
       setState({
         name: "",
         image: "",
+        price: "",
+        description: "",
       });
       setImage("");
     }
@@ -71,54 +78,16 @@ const Category = () => {
 
   useEffect(() => {
     const obj = {
-      perpage: parseInt(perpage),
+      perpage: parseInt(perPage),
       page: parseInt(currentPage),
       searchValue,
     };
     dispatch(get_category(obj));
-  }, [searchValue, currentPage, perpage]);
+  }, [searchValue, currentPage, perPage]);
 
-
-
-  const categoryCards = [
-    {
-      id: 1,
-      title: "Foxtale Cleanser",
-      price: "$450",
-      description: "With an Upgraded Unique Pulsation Technique",
-      image:
-        "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTrl0hkvwaUZJCKMsus_KjQdVpxDiikwgKOBt3ZsZA0IoVuo6b8JgOV21Wt2CpTeRMYpEDu_UiO3ksQIjC8ux05IXOiYqfTnrLpenEdfEs",
-    },
-    {
-      id: 2,
-      title: "Foxtale Cleanser",
-      price: "$450",
-      description: "With an Upgraded Unique Pulsation Technique",
-      image:
-        "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRaMbaUROi5ivvnxf95zzjBa15aw0iiCbkSO45lil-PoKFplMVIK4JKXDy4EaE5yqoJybWPd4RxxgMmyDUdKp90GitOwABOyD611kW7j_Ee",
-    },
-    {
-      id: 3,
-      title: "Foxtale Cleanser",
-      price: "$450",
-      description: "With an Upgraded Unique Pulsation Technique",
-      image:
-        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ4Fj8Th39lco-NVQC4TTVuBurjFPn0SNiyThaQzQU1zJJUrjHB5ze9f2cc1383v8kWtQRddt8QMzhG4XX54QW20rPd_p2522s3JinscegZ0fAVXYmxMyO1gw",
-    },
-    {
-      id: 4,
-      title: "Foxtale Cleanser",
-      price: "$450",
-      description: "With an Upgraded Unique Pulsation Technique",
-      image:
-        "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ-0c3Ol60ZQVThV9KvzXTzisbx_4QzjtF2oNPmQHu4eOa23OVDYVX4xSwmYgO024fvjJRtEMPN__BX9Z806anSMt19kFn55GK5LCuyroF0",
-    },
-  ];
-  
-  
 
   return (
-    <div className="px-4 sm:px-6 lg:px-12 pt-9 ">
+    <div className="px-4 sm:px-6 lg:px-12 pt-9">
       <div className="text-center">
         <h1 className="font-poppins font-extrabold text-3xl sm:text-5xl">
           Connect the best tools <br className="hidden sm:block" />
@@ -147,146 +116,185 @@ const Category = () => {
       </div>
 
       <br />
-      <div className="flex flex-wrap">
-      <div className="flex-wrap flex gap-6 justify-center p-4 bg- rounded-md">
-         {categoryCards.map((card) => (
+      <div className="flex flex-wrap justify-center p-4 bg-white rounded-md">
+  {categories.length > 0 ? (
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {categories.map((card) => (
         <div
-        key={card.id}
-        className="w-56 rounded-2xl transition-all duration-300 hover:shadow-xl hover:scale-105">
-        <div className="relative w-56 rounded-2xl overflow-hidden transition-all duration-300">
-          {/* Image with Overlay Effect */}
-          <div className="relative w-full h-64">
+          key={card.id}
+          className="bg-white w-full max-w-xs rounded-2xl shadow hover:shadow-xl transition-all duration-300 hover:scale-105"
+        >
+          {/* Image Wrapper */}
+          <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden rounded-t-2xl">
             <img
               src={card.image}
-              className="w-64 h-64 object-cover transition-transform duration-500 hover:scale-110"
-              alt={card.title}
+              alt={card.name}
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             />
+
+            {/* Floating Buttons */}
+            <div className="absolute top-3 right-3 flex flex-col gap-2">
+              <div className="bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-transform duration-300 hover:scale-110">
+                <MdOutlineEdit size={18} className="text-gray-700" />
+              </div>
+              <div className="bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100">
+                <AiOutlineDelete size={18} className="text-gray-700" />
+              </div>
+            </div>
           </div>
 
-          {/* Floating Buttons */}
-          <div className="absolute top-3 right-3 bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100">
-            <MdOutlineEdit size={18} className="text-gray-700" />
-          </div>
-          <div className="absolute top-14 right-3 bg-white p-2 rounded-full shadow-sm cursor-pointer hover:bg-gray-100">
-            <AiOutlineDelete size={18} className="text-gray-700" />
+          {/* Text Section */}
+          <div className="p-4">
+            <div className="flex items-center justify-between mb-1">
+              <h3 className="text-base font-semibold text-gray-900 truncate w-3/4">
+                {card.name}
+              </h3>
+              <span className="text-sm font-medium text-green-600">${card.price}</span>
+            </div>
+            <p className="text-sm text-gray-500 line-clamp-2">{card.description}</p>
           </div>
         </div>
-
-        {/* Text Section */}
-        <div className="p-2 w-56 transition-all duration-300">
-          <div className="flex items-center gap-2 text-gray-500">
-            <h3 className="text-lg font-semibold text-gray-900 w-40">
-              {card.title}
-            </h3>
-            <h3>{card.price}</h3>
-          </div>
-          <p className="text-gray-500 text-xs w-40 mt-1">{card.description}</p>
-        </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
+  ) : (
+    <div className="flex flex-col items-center justify-center text-center my-20 w-full">
+      <MdCategory size={50} className="text-gray-400 mb-4" />
+      <p className="text-xl font-semibold text-gray-600">No categories found</p>
+      <p className="text-sm text-gray-500 mt-1">Try adding a new category or refine your search.</p>
+    </div>
+  )}
 </div>
+
       {/* pagination */}
 
       <div className="flex justify-center  items-center mt-5">
+      
         <Pagination
           pageNumber={currentPage}
           setPageNumber={setCurrentPage}
-          totalItem={50}
-          perPage={perpage}
+          totalItem={totalCategory}
+          perPage={perPage}
           showItem={3}
+          
         />
       </div>
 
       {/* Modal Component */}
       {isOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm z-50">
-          {/* Modal Container */}
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm">
+    <div className="bg-white shadow-2xl rounded-3xl px-8 py-6 w-[420px] relative animate-fade-in">
+      {/* Close Button */}
+      <button
+        onClick={() => setIsOpen(false)}
+        className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-all duration-200"
+      >
+        <IoCloseOutline className="w-6 h-6" />
+      </button>
 
-          <div className="bg-white shadow-xl rounded-2xl p-6 w-[400px] relative animate-fade-in">
-            {/* Close Button */}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-4 text-gray-500 hover:text-gray-800 transition"
-            >
-              <IoCloseOutline className="w-6 h-6" />
-            </button>
+      {/* Modal Title */}
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+        Add New Category
+      </h2>
 
-            {/* Modal Title */}
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
-              Add New Category
-            </h2>
-            <div>
-              <form onSubmit={add_category}>
-                {/* Category Name Input */}
-                <div className="mb-4">
-                  <label className="block text-gray-700 font-medium mb-1">
-                    Category Name
-                  </label>
-                  <input
-                    value={state.name}
-                    onChange={(e) =>
-                      setState({ ...state, name: e.target.value })
-                    }
-                    type="text"
-                    placeholder="Enter category name..."
-                    className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3948ab] transition"
-                  />
-                </div>
-
-                {/* Image Upload Section */}
-                <div className="mb-4 flex flex-col items-center w-full">
-                  <label className="block text-gray-700 font-medium mb-2">
-                    Upload Image
-                  </label>
-
-                  <label
-                    htmlFor="image"
-                    className="w-full h-32 flex items-center justify-center border-2 border-dashed border-gray-400 rounded-lg cursor-pointer hover:border-[#3948ab] transition overflow-hidden"
-                  >
-                    {imageShow ? (
-                      <img
-                        src={imageShow}
-                        alt="Uploaded preview"
-                        className="h-full object-contain"
-                      />
-                    ) : (
-                      <div className="flex flex-col items-center justify-center text-gray-500">
-                        <IoImageOutline className="text-3xl mb-1" />
-                        <span>Select Image</span>
-                      </div>
-                    )}
-                    <input
-                      onChange={imageHandle}
-                      className="hidden"
-                      type="file"
-                      name="image"
-                      id="image"
-                    />
-                  </label>
-                </div>
-
-                {/* Buttons */}
-                <div className="w-full flex justify-end gap-4 mt-6">
-                  <button
-                    disabled={loader ? true : false}
-                    className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold transition duration-300 hover:bg-blue-600 flex items-center justify-center"
-                  >
-                    {loader ? (
-                      <PropagateLoader
-                        color="#ffffff"
-                        cssOverride={overrideStyle}
-                      />
-                    ) : (
-                      "Add Category"
-                    )}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
+      {/* Form */}
+      <form onSubmit={add_category} className="space-y-4">
+        {/* Category Name Input */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-600 mb-1">
+            Category Name
+          </label>
+          <input
+            value={state.name}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
+            type="text"
+            placeholder="Enter category name..."
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
         </div>
-      )}
+
+        {/* Price Input */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-600 mb-1">
+            Price
+          </label>
+          <input
+            value={state.price}
+            onChange={(e) => setState({ ...state, price: e.target.value })}
+            type="number"
+            placeholder="Enter price"
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        {/* Description Input */}
+        <div>
+          <label className="block text-sm font-semibold text-gray-600 mb-1">
+            Description
+          </label>
+          <textarea
+            value={state.description}
+            onChange={(e) =>
+              setState({ ...state, description: e.target.value })
+            }
+            placeholder="Enter description..."
+            rows="3"
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+          />
+        </div>
+
+        {/* Image Upload */}
+        <div className="flex flex-col items-start">
+          <label className="text-sm font-semibold text-gray-600 mb-2">
+            Upload Image
+          </label>
+          <label
+            htmlFor="image"
+            className="w-full h-36 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-xl cursor-pointer hover:border-indigo-500 transition-all duration-300 overflow-hidden bg-gray-50"
+          >
+            {imageShow ? (
+              <img
+                src={imageShow}
+                alt="Preview"
+                className="h-full object-contain"
+              />
+            ) : (
+              <div className="flex flex-col items-center justify-center text-gray-400">
+                <IoImageOutline className="text-3xl mb-1" />
+                <span>Select Image</span>
+              </div>
+            )}
+            <input
+              onChange={imageHandle}
+              className="hidden"
+              type="file"
+              name="image"
+              id="image"
+            />
+          </label>
+        </div>
+
+        {/* Submit Button */}
+        <div className="pt-4">
+          <button
+            disabled={loader}
+            className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
+              loader
+                ? "bg-indigo-400 cursor-not-allowed"
+                : "bg-indigo-600 hover:bg-indigo-700 text-white"
+            }`}
+          >
+            {loader ? (
+              <PropagateLoader color="#ffffff" cssOverride={overrideStyle} />
+            ) : (
+              "Add Category"
+            )}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

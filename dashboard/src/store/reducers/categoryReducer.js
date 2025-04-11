@@ -3,12 +3,14 @@ import api from "../../api/api";
 
 export const categoryAdd = createAsyncThunk(
   "category/categoryAdd",
-  async ({name,image}, { rejectWithValue, fulfillWithValue }) => {
+  async ({name,image, description, price}, { rejectWithValue, fulfillWithValue }) => {
     
     try {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('image', image)
+        formData.append("description",description);
+        formData.append("price", price);
       const { data } = await api.post("/category-add", formData, {
         withCredentials: true,
       });
@@ -25,10 +27,22 @@ export const categoryAdd = createAsyncThunk(
 
 export const get_category = createAsyncThunk(
     "category/get_category",
-    async ({perpage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
-      
+    // async ({perPage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
+    //     console.log("Fetching Categories:", { perPage, page, searchValue });
+
+    async (
+        args,
+        { rejectWithValue, fulfillWithValue }
+      ) => {
+        // fallback if args is undefined
+        const {
+          perPage = 4,
+          page = 1,
+          searchValue = ""
+        } = args || {};
+
       try {
-        const { data } = await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&perpage=${perpage}`, 
+        const { data } = await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, 
             {withCredentials: true,});
         
         console.log(data);
