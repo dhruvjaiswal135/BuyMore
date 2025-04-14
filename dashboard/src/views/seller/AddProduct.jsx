@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { get_category } from "../../store/reducers/categoryReducer";
+import { add_product } from "../../store/reducers/productReducer";
 
 const AddProduct = () => {
   const dispatch = useDispatch()
@@ -93,6 +94,19 @@ const AddProduct = () => {
 
   const add = (e)=>{
     e.preventDefault()
+    const formData = new FormData()
+    formData.append('name', state.name)
+    formData.append('description', state.description)
+    formData.append('baseprice', state.baseprice)
+    formData.append('discountpercentage', state.discountpercentage)
+    formData.append('stock', state.stock)
+    formData.append('brand', state.brand)
+    formData.append('category', category)
+    formData.append('couponcode', state.couponcode)
+    for (let i = 0; i < images.length; i++) {
+    formData.append('prodimage', prodimage[i])
+    }
+    dispatch(add_product(formData))
   }
 
   useEffect(()=>{

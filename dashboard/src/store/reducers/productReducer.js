@@ -3,19 +3,15 @@ import api from "../../api/api";
 
 export const add_product = createAsyncThunk(
   "product/add_product",
-  async ({name,image, description, price}, { rejectWithValue, fulfillWithValue }) => {
+  async (product, { rejectWithValue, fulfillWithValue }) => {
     
     try {
-        const formData = new FormData()
-        formData.append('name', name)
-        formData.append('image', image)
-        formData.append("description",description);
-        formData.append("price", price);
-      const { data } = await api.post("/category-add", formData, {
+        
+      const { data } = await api.post("/product-add", product, {
         withCredentials: true,
       });
       
-      //console.log(data);
+      console.log(data);
       return fulfillWithValue(data);
     } catch (error) {
       //console.log(error.response.data);
@@ -26,7 +22,7 @@ export const add_product = createAsyncThunk(
 
 
 export const get_product = createAsyncThunk(
-    "product/get_product",
+    "category/get_product",
     // async ({perPage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
     //     console.log("Fetching Categories:", { perPage, page, searchValue });
 
