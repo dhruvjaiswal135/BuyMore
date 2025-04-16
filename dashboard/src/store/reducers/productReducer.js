@@ -11,7 +11,7 @@ export const add_product = createAsyncThunk(
         withCredentials: true,
       });
       
-      console.log(data);
+      //console.log(data);
       return fulfillWithValue(data);
     } catch (error) {
       //console.log(error.response.data);
@@ -22,7 +22,7 @@ export const add_product = createAsyncThunk(
 
 
 export const get_product = createAsyncThunk(
-    "category/get_product",
+    "product/get_product",
     // async ({perPage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
     //     console.log("Fetching Categories:", { perPage, page, searchValue });
 
@@ -38,7 +38,7 @@ export const get_product = createAsyncThunk(
         } = args || {};
 
       try {
-        const { data } = await api.get(`/category-get?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, 
+        const { data } = await api.get(`/product-get?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, 
             {withCredentials: true,});
         
         console.log(data);
@@ -78,7 +78,7 @@ export const productReducer = createSlice({
       .addCase(add_product.fulfilled, (state, { payload }) => {
         state.loader = false;
         state.successMessage = payload.message;
-        state.products = [...state.products, payload.category]
+        state.products = [...state.products, payload.product]
       })
 
       .addCase(get_product.fulfilled, (state, { payload }) => {

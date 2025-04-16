@@ -39,7 +39,7 @@ const EditProduct = () => {
     baseprice: "",
     discountpercentage: "",
     couponcode: "",
-    prodimage: "",
+    images: "",
     category: "",
     brand: "",
     stock: "",
@@ -91,7 +91,7 @@ const EditProduct = () => {
       baseprice: "4500",
       discountpercentage: "20",
       couponcode: "FREE20",
-      prodimage: "",
+      images: "",
       category: "Tshirt",
       brand: "H&M",
       stock: "10",
@@ -305,7 +305,7 @@ const EditProduct = () => {
 
   {/* Product Photo Upload Box */}
   <label
-    htmlFor="prodimage"
+    htmlFor="images"
     className="flex flex-col justify-center items-center w-full sm:w-24 md:w-28 lg:w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
   >
     <IoMdImages size={24} className="sm:size-16 md:size-10 lg:size-10" />
@@ -313,8 +313,8 @@ const EditProduct = () => {
   </label>
   <input
     type="file"
-    name="prodimage"
-    id="prodimage"
+    name="images"
+    id="images"
     className="hidden"
   />
 </div>

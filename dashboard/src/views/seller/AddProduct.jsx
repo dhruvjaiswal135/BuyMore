@@ -27,7 +27,7 @@ const AddProduct = () => {
     baseprice: "",
     discountpercentage: "",
     couponcode: "",
-    prodimage: "",
+    
     category: "",
     brand: "",
     stock: "",
@@ -60,6 +60,7 @@ const AddProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imageShow, setImageShow] = useState([]);
+
   const imageHandle = (e) => {
     const files = e.target.files;
     const length = files.length;
@@ -68,8 +69,9 @@ const AddProduct = () => {
       let imageUrl = [];
       for (let i = 0; i < length; i++) {
         imageUrl.push({ url: URL.createObjectURL(files[i]) });
-        setImageShow([...imageShow, ...imageUrl]);
+        
       }
+      setImageShow([...imageShow, ...imageUrl]);
     }
     console.log(images);
   };
@@ -103,9 +105,13 @@ const AddProduct = () => {
     formData.append('brand', state.brand)
     formData.append('category', category)
     formData.append('couponcode', state.couponcode)
+    formData.append('shopName', "Narayana Firms")
+
     for (let i = 0; i < images.length; i++) {
-    formData.append('prodimage', prodimage[i])
+    formData.append('images', images[i])
     }
+    console.log(state);
+    console.log([...formData]);
     dispatch(add_product(formData))
   }
 
@@ -296,11 +302,11 @@ const AddProduct = () => {
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 w-full mt-3">
           {imageShow.map((img, i) => (
             <div
-              key={i}
+            key={img.id || i} // Use img.id if available, else fallback to index
               className="relative group w-full aspect-square overflow-hidden rounded-md shadow-md border border-gray-200"
             >
               <label
-                htmlFor={`image-${i}`}
+                htmlFor={i}
                 className="cursor-pointer block w-full h-full"
               >
                 <img
@@ -312,7 +318,7 @@ const AddProduct = () => {
               <input
                 onChange={(e) => changeImage(e.target.files[0], i)}
                 type="file"
-                id={`image-${i}`}
+                id={i}
                 className="hidden"
               />
               <span
@@ -326,7 +332,7 @@ const AddProduct = () => {
 
           {/* Upload Box */}
           <label
-            htmlFor="prodimage"
+            htmlFor="images"
             className="flex flex-col justify-center items-center w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
           >
             <IoMdImages size={30} />
@@ -336,8 +342,7 @@ const AddProduct = () => {
             multiple
             onChange={imageHandle}
             type="file"
-            name="prodimage"
-            id="prodimage"
+            id="images"
             className="hidden"
           />
         </div>
@@ -378,6 +383,7 @@ const AddProduct = () => {
                 />
               </div>
               <div className="flex flex-col max-h-[150px] overflow-y-auto">
+
                 {allCategory.map((c, i) => (
                   <label
                     key={i}
@@ -423,7 +429,7 @@ const AddProduct = () => {
       </div>
 
       {/* Inventory */}
-      <div className="p-4 shadow-md rounded-md border border-gray-50">
+      {/* <div className="p-4 shadow-md rounded-md border border-gray-50">
         <h1>Inventory</h1>
         <div className="flex flex-col w-full mt-3">
           <label
@@ -461,7 +467,7 @@ const AddProduct = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 
