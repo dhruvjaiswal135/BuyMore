@@ -21,26 +21,26 @@ export const add_product = createAsyncThunk(
 );
 
 
-export const get_product = createAsyncThunk(
-    "product/get_product",
-    // async ({perPage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
-    //     console.log("Fetching Categories:", { perPage, page, searchValue });
+export const get_products = createAsyncThunk(
+    "product/get_products",
+    async ({perPage,page,searchValue}, { rejectWithValue, fulfillWithValue }) => {
+         console.log("Fetching Categories:", { perPage, page, searchValue });
 
-    async (
-        args,
-        { rejectWithValue, fulfillWithValue }
-      ) => {
-        // fallback if args is undefined
-        const {
-          perPage = 4,
-          page = 1,
-          searchValue = ""
-        } = args || {};
+    // async (
+    //     args,
+    //     { rejectWithValue, fulfillWithValue }
+    //   ) => {
+    //     // fallback if args is undefined
+    //     const {
+    //       perPage = 4,
+    //       page = 1,
+    //       searchValue = ""
+    //     } = args || {};
 
       try {
-        const { data } = await api.get(`/product-get?page=${page}&&searchValue=${searchValue}&&perPage=${perPage}`, 
-            {withCredentials: true,});
-        
+        const { data } = await api.get(`/products-get?page=${page}&&
+          searchValue=${searchValue}&&perPage=${perPage}`, 
+          {withCredentials: true,});
         console.log(data);
         return fulfillWithValue(data);
       } catch (error) {
@@ -78,12 +78,11 @@ export const productReducer = createSlice({
       .addCase(add_product.fulfilled, (state, { payload }) => {
         state.loader = false;
         state.successMessage = payload.message;
-        state.products = [...state.products, payload.product]
       })
 
-      .addCase(get_product.fulfilled, (state, { payload }) => {
+      .addCase(get_products.fulfilled, (state, { payload }) => {
         state.totalProduct = payload.totalProduct;
-        state.products = payload.categories;
+        state.products = payload.products;
       })
       
   },

@@ -24,8 +24,6 @@ const Category = () => {
     (state) => state.category
   );
 
-  
-
   const [isOpen, setIsOpen] = useState(false); //used for modal
   const [searchValue, setSearchValue] = useState("");
   const [perPage, setPerpage] = useState(4); //4 prod on one page
@@ -78,7 +76,7 @@ const Category = () => {
 
   useEffect(() => {
     const obj = {
-      perpage: parseInt(perPage),
+      perPage: parseInt(perPage),
       page: parseInt(currentPage),
       searchValue,
     };

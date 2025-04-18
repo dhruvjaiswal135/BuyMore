@@ -7,11 +7,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { get_category } from "../../store/reducers/categoryReducer";
-import { add_product } from "../../store/reducers/productReducer";
+import { add_product, messageClear } from "../../store/reducers/productReducer";
+import { overrideStyle } from '../../utilities/utlis';
+import toast from "react-hot-toast";
+import { PropagateLoader } from 'react-spinners';
 
 const AddProduct = () => {
   const dispatch = useDispatch()
   const {categories} = useSelector(state => state.category)
+  const {loader, successMessage,errorMessage} = useSelector(state => state.product)
 
   useEffect(()=> {
     dispatch(get_category({
@@ -50,6 +54,31 @@ const AddProduct = () => {
       setAllCategory(categories);
     }
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      setState({
+        name: "",
+    description: "",
+    baseprice: "",
+    discountpercentage: "",
+    couponcode: "",
+    
+    category: "",
+    brand: "",
+    stock: "",
+      });
+      setImageShow([])
+      setImages([]);
+      setCategory('')
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [successMessage, errorMessage]);
 
   const inputHandle = (e) => {
     setState({
@@ -110,9 +139,15 @@ const AddProduct = () => {
     for (let i = 0; i < images.length; i++) {
     formData.append('images', images[i])
     }
-    console.log(state);
-    console.log([...formData]);
-    dispatch(add_product(formData))
+    dispatch(add_product(formData)).then((res) => {
+      console.log("✅ Product creation response:", res); // Shows the response
+      if (res.payload?.product) {
+        console.log("🎉 Product created:", res.payload.product); // Shows the created product
+      }
+      if (res.payload?.message) {
+        console.log("📝 Server message:", res.payload.message);
+      }
+    });
   }
 
   useEffect(()=>{
@@ -137,10 +172,16 @@ const AddProduct = () => {
 </div>
 
           <div className="gap-2 flex">
-            <button className="rounded-md px-3 py-2 text-xs text-red-700 border border-red-700">
-              Discard Changes
-            </button>
-            <button to='seller/dashboard/products' className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white">
+          <button
+  onClick={() => window.location.href = "/seller/dashboard/add-product"}  //to forcefully refresh the page
+  className="rounded-md px-3 py-2 text-xs items-center justify-center text-red-700 border border-red-700"
+>
+  Discard Changes
+</button>
+
+            <button to='seller/dashboard/products'
+            onClick={() => window.location.href = "/seller/dashboard/products"}
+            className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white">
               All Product
             </button>
           </div>
@@ -473,12 +514,20 @@ const AddProduct = () => {
 
   {/* Optional Submit Button */}
   <div className="w-full mt-4 flex justify-end">
-    <button
-      type="submit"
-      className="bg-[#3948ab] text-white px-4 py-2 rounded-md shadow hover:bg-[#2f3e9d] transition-all"
-    >
-      Submit
-    </button>
+  <button
+            disabled={loader}
+            className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center ${
+              loader
+                ? "bg-[#3948ab] cursor-not-allowed"
+                : "bg-[#3948ab] hover:bg-[#2d3985] text-white"
+            }`}
+          >
+            {loader ? (
+              <PropagateLoader color="#ffffff" cssOverride={overrideStyle} />
+            ) : (
+              "Add Product"
+            )}
+          </button>
   </div>
 </form>
 

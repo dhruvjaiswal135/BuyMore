@@ -25,10 +25,10 @@ const Search2 = ({ setPerpage, searchValue, setSearchValue }) => {
           onChange={(e) => setPerpage(parseInt(e.target.value))}
           className="px-4 py-2 bg-black text-white font-light text-sm rounded-full appearance-none cursor-pointer pr-8"
         >
-          <option value="5">05</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
+          <option value="4">04</option>
+          <option value="8">08</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
         </select>
         <div className="absolute top-1/2 right-3 text-white transform -translate-y-1/2 pointer-events-none">
           ⏷
