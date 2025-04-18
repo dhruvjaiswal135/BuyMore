@@ -24,6 +24,9 @@ app.use(cookieParser());
 
 app.use("/api", require("./routes/authroutes"));
 app.use("/api", require("./routes/dashboard/categoryRoute"));
+app.use("/api", require("./routes/dashboard/productRoute"));
+
+
 app.get("/", (req, res) => res.send("My backend"));
 //to access the environment variables
 const port = process.env.PORT;
