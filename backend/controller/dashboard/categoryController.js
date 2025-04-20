@@ -79,7 +79,7 @@ class categoryControllers{
     
 
     get_category = async (req, res) => {
-        let { page = 1, searchValue = '', perPage = 10 } = req.query;
+        const {page,searchValue,perPage} = req.query;
     
 
         try {
