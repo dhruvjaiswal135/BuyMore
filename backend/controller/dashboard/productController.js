@@ -121,7 +121,7 @@ class productCotroller {
             responseReturn(res,200,{product})
             console.log(product)
         } catch (error) {
-            // console.log(error.message)
+             console.log(error.message)
         }
     }
 }
