@@ -142,12 +142,14 @@ const Product = () => {
                 <AiOutlineEye size={14} className="text-gray-700" />
               </Link>
               <Link
-                to={`/seller/dashboard/edit-product/32`}
-                className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center"
+                to={`/seller/dashboard/edit-product/${product._id}`}
+                className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform 
+                duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center"
               >
                 <MdOutlineEdit size={14} className="text-gray-700" />
               </Link>
-              <Link className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
+              <Link className="bg-white p-2 rounded-full shadow-md cursor-pointer transition-transform 
+              duration-300 hover:scale-110 hover:bg-gray-100 flex items-center justify-center">
                 <AiOutlineDelete size={14} className="text-gray-700" />
               </Link>
             </div>

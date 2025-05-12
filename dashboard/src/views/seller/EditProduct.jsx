@@ -4,35 +4,36 @@ import {
   IoMdCloseCircle,
   IoMdImages,
 } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { get_category } from "../../store/reducers/categoryReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { get_product } from "../../store/reducers/productReducer";
+import { PropagateLoader } from 'react-spinners';
+import { overrideStyle } from '../../utilities/utlis';
 
 const EditProduct = () => {
-  const categories = [
-    {
-      id: 1,
-      name: "Sports",
-    },
-    {
-      id: 2,
-      name: "Computer",
-    },
-    {
-      id: 3,
-      name: "Watch",
-    },
-    {
-      id: 4,
-      name: "Mobile",
-    },
-    {
-      id: 5,
-      name: "Tshirt",
-    },
-    {
-      id: 6,
-      name: "Laptop",
-    },
-  ];
+  const { productId } = useParams();
+  console.log(productId);
+
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.category);
+  const { product } = useSelector((state) => state.product);
+  const {loader, successMessage,errorMessage} = useSelector(state => state.product)
+  
+  useEffect(() => {
+    dispatch(
+      get_category({
+        page: 1,
+        searchValue: " ",
+        perPage: "",
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    dispatch(get_product(productId));
+  }, [productId]);
+
   const [state, setState] = useState({
     name: "",
     description: "",
@@ -72,37 +73,35 @@ const EditProduct = () => {
 
   const [images, setImages] = useState([]);
   const [imageShow, setImageShow] = useState([]);
-  
 
   const changeImage = (img, files) => {
-    if(files.length>0){
-        console.log(img)
-        console.log(files[0])
+    if (files.length > 0) {
+      console.log(img);
+      console.log(files[0]);
     }
   };
-  
+
   // for editing the existing values
 
   useEffect(() => {
     setState({
-      name: "Men's Tshirt ",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident eos totam, quam rerum atque alias reprehenderit esse perspiciatis culpa blanditiis!",
-      baseprice: "4500",
-      discountpercentage: "20",
-      couponcode: "FREE20",
-      images: "",
-      category: "Tshirt",
-      brand: "H&M",
-      stock: "10",
+      name: product.name,
+      description: product.description,
+      baseprice: product.baseprice,
+      discountpercentage: product.discountpercentage,
+      couponcode: product.couponcode,
+      category: product.category,
+      brand: product.brand,
+      stock: product.stock,
     });
-    setCategory("Tshirt");
+    setCategory(product.category);
     setImageShow([
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/item/goods_71_465185_3x4.jpg?width=369",
-      "https://image.uniqlo.com/UQ/ST3/in/imagesgoods/465185/sub/ingoods_465185_sub17_3x4.jpg?width=369",
-      "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/sub/goods_465185_sub14_3x4.jpg?width=369",
+      product.images,
+      // "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/item/goods_71_465185_3x4.jpg?width=369",
+      // "https://image.uniqlo.com/UQ/ST3/in/imagesgoods/465185/sub/ingoods_465185_sub17_3x4.jpg?width=369",
+      // "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/sub/goods_465185_sub14_3x4.jpg?width=369",
     ]);
-  }, []);
+  }, [product]);
   return (
     <div className="px-2 sm:px-6 lg:px-4 py-9">
       <div className="w-full p-4 rounded-md ">
@@ -124,12 +123,21 @@ const EditProduct = () => {
             <button className="rounded-md px-3 py-2 text-xs text-red-700 border border-red-700">
               Discard Changes
             </button>
+            
             <button
-              to="seller/dashboard/products"
-              className="bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white"
-            >
-              Save Changes
-            </button>
+            disabled={loader}
+            className={`bg-[#3948ab] rounded-md px-5 py-2 text-xs text-white ${
+              loader
+                ? "bg-[#3948ab] cursor-not-allowed"
+                : "bg-[#3948ab] hover:bg-[#2d3985] text-white"
+            }`}
+          >
+            {loader ? (
+              <PropagateLoader color="#ffffff" cssOverride={overrideStyle} />
+            ) : (
+              "Save Changes"
+            )}
+          </button>
           </div>
         </div>
         <div className="w-full flex flex-wrap mt-5 justify-between ">
@@ -285,40 +293,44 @@ const EditProduct = () => {
 
                 {/* Image Grid */}
                 <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 w-full mt-3">
-  {imageShow.map((img, i) => (
-    <div key={i} className="relative">
-      <label htmlFor={`image-${i}`} className="block">
-        <img 
-          src={img}
-          className="w-full sm:w-24 md:w-28 lg:w-full aspect-square object-cover rounded-md border border-gray-300"
-          alt="Product"
-        />
-      </label>
-      <input
-        onChange={(e) => changeImage(i, e.target.files[0])}
-        type="file"
-        id={`image-${i}`}
-        className="hidden"
-      />
-    </div>
-  ))}
+                  {imageShow.map((img, i) => (
+                    <div key={i} className="relative">
+                      <label htmlFor={`image-${i}`} className="block">
+                        <img
+                          src={img}
+                          className="w-full sm:w-24 md:w-28 lg:w-full aspect-square object-cover rounded-md border border-gray-300"
+                          alt="Product"
+                        />
+                      </label>
+                      <input
+                        onChange={(e) => changeImage(i, e.target.files[0])}
+                        type="file"
+                        id={`image-${i}`}
+                        className="hidden"
+                      />
+                    </div>
+                  ))}
 
-  {/* Product Photo Upload Box */}
-  <label
-    htmlFor="images"
-    className="flex flex-col justify-center items-center w-full sm:w-24 md:w-28 lg:w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
-  >
-    <IoMdImages size={24} className="sm:size-16 md:size-10 lg:size-10" />
-    <span className="mt-1 text-xs md:text-[10px]">Select Image</span>
-  </label>
-  <input
-    type="file"
-    name="images"
-    id="images"
-    className="hidden"
-  />
-</div>
-
+                  {/* Product Photo Upload Box */}
+                  <label
+                    htmlFor="images"
+                    className="flex flex-col justify-center items-center w-full sm:w-24 md:w-28 lg:w-full aspect-square cursor-pointer border-2 border-dashed border-gray-300 rounded-md text-gray-500 hover:border-[#3948ab] hover:text-[#3948ab] transition-all"
+                  >
+                    <IoMdImages
+                      size={24}
+                      className="sm:size-16 md:size-10 lg:size-10"
+                    />
+                    <span className="mt-1 text-xs md:text-[10px]">
+                      Select Image
+                    </span>
+                  </label>
+                  <input
+                    type="file"
+                    name="images"
+                    id="images"
+                    className="hidden"
+                  />
+                </div>
               </div>
             </div>
 
