@@ -48,6 +48,7 @@ const adminDashboard = () => {
             },
 
             // here the graph is made responsive
+            // here the graph is made responsive
 
             responsive: [
                 {
