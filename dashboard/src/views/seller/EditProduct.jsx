@@ -438,6 +438,7 @@ const EditProduct = () => {
                   />
                   <div className="flex items-center justify-between w-full gap-4">
                     {/* Discount Percentage */}
+                    {/* Discount Percentage */}
                     <div className="flex flex-col w-full">
                       <label
                         htmlFor="Barcode"
