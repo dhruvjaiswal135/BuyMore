@@ -26,7 +26,7 @@ class productCotroller {
           stock,
           baseprice,
           discountpercentage,
-          shopName,
+          //shopName,
           brand,
         } = field;
 
@@ -80,74 +80,105 @@ class productCotroller {
       }
     });
   };
-    // end method
+  // end method
 
-    products_get = async (req, res) => {
-        const {page,searchValue,perPage} = req.query;
-        const {id} = req;
+  products_get = async (req, res) => {
+    const { page, searchValue, perPage } = req.query;
+    const { id } = req;
 
-        const skipPage = parseInt(perPage) * (parseInt(page)-1)
+    const skipPage = parseInt(perPage) * (parseInt(page) - 1);
 
-        try {
-            if (searchValue) {
-                const products = await productModel.find({
-                    $text : {$search:searchValue},
-                    sellerId : id,
-                }).skip(skipPage).limit(perPage).sort({createdAt : -1})
-                const totalProduct = await productModel.find({
-                    $text : {$search:searchValue},
-                    sellerId : id,
-                }).countDocuments()
-                responseReturn(res,200,{products,totalProduct})
-            } else{
-                const products = await productModel.find({ sellerId : id,
-                }).skip(skipPage).limit(perPage).sort({createdAt : -1})
-                const totalProduct = await productModel.find({ sellerId : id,
-                }).countDocuments()
-                responseReturn(res,200,{products,totalProduct})
-            }
-            
-        } catch (error) {
-            console.log(error.message)
-        }
+    try {
+      if (searchValue) {
+        const products = await productModel
+          .find({
+            $text: { $search: searchValue },
+            sellerId: id,
+          })
+          .skip(skipPage)
+          .limit(perPage)
+          .sort({ createdAt: -1 });
+        const totalProduct = await productModel
+          .find({
+            $text: { $search: searchValue },
+            sellerId: id,
+          })
+          .countDocuments();
+        responseReturn(res, 200, { products, totalProduct });
+      } else {
+        const products = await productModel
+          .find({ sellerId: id })
+          .skip(skipPage)
+          .limit(perPage)
+          .sort({ createdAt: -1 });
+        const totalProduct = await productModel
+          .find({ sellerId: id })
+          .countDocuments();
+        responseReturn(res, 200, { products, totalProduct });
+      }
+    } catch (error) {
+      console.log(error.message);
     }
-    // end method
+  };
+  // end method
 
-    product_get = async (req, res) => {
-        const {productId} = req.params;
+  product_get = async (req, res) => {
+    const { productId } = req.params;
 
-        try {
-            const product = await productModel.findById(productId)
-            responseReturn(res,200,{product})
-            console.log(product)
-        } catch (error) {
-             console.log(error.message)
-        }
+    try {
+      const product = await productModel.findById(productId);
+      responseReturn(res, 200, { product });
+      console.log(product);
+    } catch (error) {
+      console.log(error.message);
     }
+  };
+
+  product_update = async (req, res) => {
+    let {
+    name,
+    category,
+    description,
+    couponcode,
+    stock,
+    baseprice,
+    discountpercentage,
+    productId,
+    brand,
+  } = req.body;
+
+  name = name.trim();
+  const slug = name.split(" ").join("-");
+
+  try {
+    await productModel.findByIdAndUpdate(productId, {
+      name,
+      slug,
+      //shopName,
+      category,
+      description,
+      couponcode,
+      stock,
+      baseprice,
+      discountpercentage,
+      brand,
+      productId,
+    });
+    const product = await productModel.findById(productId);
+    responseReturn(res, 200, {
+      product,
+      message: "Product Updated Successfully",
+      product,
+    });
+  } catch (error) {
+    responseReturn(res, 500, { error: error.message });
+  }
+};
 }
 
+ 
+
 module.exports = new productCotroller();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // const formidable = require("formidable");
 // const {responseReturn} = require("../../utilites/response.js")
@@ -172,7 +203,6 @@ module.exports = new productCotroller();
 //                 name = name.trim()
 //                 const slug = name.split(' ').join('-')
 //                 //console.log(files)
-                
 
 //                 try {
 //                     let allImageUrl = [];
@@ -204,10 +234,10 @@ module.exports = new productCotroller();
 
 //                     responseReturn(res, 500, { error: error.message });
 //                 }
-                
+
 //         })
 //     }
 
 //     //end method
 // }
-// module.exports = new productCotroller() 
+// module.exports = new productCotroller()
