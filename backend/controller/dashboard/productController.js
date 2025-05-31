@@ -193,10 +193,26 @@ class productCotroller {
           })
 
           const result = await cloudinary.uploader.upload(newImage.filepath,
-            {folder: 'products'})
-          
+          {folder: 'products'})
+          if (result) {
+            let {images} = await productModel.findById(productId);
+            const index = images.findIndex(img => img === oldImage)
+            images[index] = result.url;
+            await productModel.findByIdAndUpdate(productId,{images});
+            const product = await productModel.findById(productId);
+
+            responseReturn(res,200, {
+              product, message: "Product Image Updated Successfully"
+            })
+          } else {
+            responseReturn(res,404, {
+               error: "Image Upload Failed"
+            })
+          }
         } catch (error) {
-          
+          responseReturn(res,404, {
+            error: error.message
+         })
         }
       }
     })
