@@ -7,9 +7,11 @@ import {
 import { Link, useParams } from "react-router-dom";
 import { get_category } from "../../store/reducers/categoryReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { get_product } from "../../store/reducers/productReducer";
+import { get_product,update_product,messageClear,product_image_update } from "../../store/reducers/productReducer";
 import { PropagateLoader } from 'react-spinners';
 import { overrideStyle } from '../../utilities/utlis';
+import toast from "react-hot-toast";
+
 
 const EditProduct = () => {
   const { productId } = useParams();
@@ -71,13 +73,15 @@ const EditProduct = () => {
     });
   };
 
-  const [images, setImages] = useState([]);
   const [imageShow, setImageShow] = useState([]);
 
   const changeImage = (img, files) => {
     if (files.length > 0) {
-      console.log(img);
-      console.log(files[0]);
+      dispatch(product_image_update({ 
+        oldImage : img, 
+        newImage : files[0],
+        productId
+      }));
     }
   };
 
@@ -102,9 +106,58 @@ const EditProduct = () => {
       // "https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/465185/sub/goods_465185_sub14_3x4.jpg?width=369",
     ]);
   }, [product]);
+
+  useEffect(()=> {
+    if (categories.length > 0) {
+      setAllCategory(categories);
+      
+    }
+  },[categories]);
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage);
+      dispatch(messageClear());
+      setState({
+        name: "",
+    description: "",
+    baseprice: "",
+    discountpercentage: "",
+    couponcode: "",
+    
+    category: "",
+    brand: "",
+    stock: "",
+      });
+      setCategory('')
+    }
+    if (errorMessage) {
+      toast.error(errorMessage);
+      dispatch(messageClear());
+    }
+  }, [successMessage, errorMessage]);
+
+  const update = (e) => {
+    e.preventDefault();
+    const obj = {
+      name: state.name,
+      description: state.description,
+      baseprice: state.baseprice,
+      discountpercentage: state.discountpercentage,
+      couponcode: state.couponcode,
+      category: category,
+      brand: state.brand,
+      stock: state.stock,
+      productId: productId,
+    }
+    dispatch(update_product(obj));
+    console.log(obj);
+  }
+
   return (
     <div className="px-2 sm:px-6 lg:px-4 py-9">
       <div className="w-full p-4 rounded-md ">
+        <form onSubmit={update}>
         <div className="flex justify-between items-center p-4 border border-gray-50 rounded-lg shadow-md">
           <div className="w-full">
             <h1 className="font-normal text-lg mb-1">Edit Product</h1>
@@ -293,7 +346,7 @@ const EditProduct = () => {
 
                 {/* Image Grid */}
                 <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4 w-full mt-3">
-                  {imageShow.map((img, i) => (
+                  {(imageShow && imageShow.length>0) && imageShow.map((img, i) => (
                     <div key={i} className="relative">
                       <label htmlFor={`image-${i}`} className="block">
                         <img
@@ -371,7 +424,7 @@ const EditProduct = () => {
                       />
                     </div>
                     <div className="flex flex-col max-h-[150px] overflow-y-auto">
-                      {allCategory.map((c, i) => (
+                      {allCategory.length >0 && allCategory.map((c, i) => (
                         <label
                           key={i}
                           className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-[#3948ab] hover:text-white transition-all duration-200 rounded-sm"
@@ -438,7 +491,6 @@ const EditProduct = () => {
                   />
                   <div className="flex items-center justify-between w-full gap-4">
                     {/* Discount Percentage */}
-                    {/* Discount Percentage */}
                     <div className="flex flex-col w-full">
                       <label
                         htmlFor="Barcode"
@@ -462,6 +514,7 @@ const EditProduct = () => {
             </div>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );

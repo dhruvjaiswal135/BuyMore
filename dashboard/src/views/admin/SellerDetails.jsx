@@ -1,7 +1,19 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const SellerDetailsModal = ({ isOpen, onClose }) => {
+
+    const dispatch = useDispatch();
+    const {seller} = useSelector((state) => state.seller);
+    const {sellerId} = useParams();
+    
+    useEffect(()=>{
+        dispatch(get_seller(sellerId));
+        },[sellerId]);
+
     if (!isOpen) return null;
 
     return (

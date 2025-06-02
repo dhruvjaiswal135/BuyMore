@@ -2,49 +2,38 @@ import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination";
 import { FaEye } from "react-icons/fa";
 import { CiSearch, CiSquareAlert } from "react-icons/ci";
-import { IoDownloadOutline } from "react-icons/io5";
 import { GoDotFill } from "react-icons/go";
 import SellerDetailsModal from "./SellerDetails";
+import Search2 from '../component/Search2';
+import {get_seller_request} from "../../store/reducers/sellerReducer";
+import { useDispatch, useSelector } from "react-redux";
 const SellerRequest = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
-  const [perPage, setPerPage] = useState(5);
+  const [perPage, setPerPage] = useState(4);
   const [show, setShow] = useState(false);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {sellers, totalSeller} = useSelector((state) => state.seller);
+  
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(get_seller_request({
+      perPage,
+      page: currentPage,
+      searchValue,
+    }));
+  },[perPage, currentPage, searchValue]);
+
   return (
     <div className=" px-4 py-9">
       <div className="bg-white p-4 rounded-md shadow border border-gray-200">
-        <div className="flex justify-between items-center gap-3 ">
-          {/* Search Input */}
-          <div className="relative w-full ">
-            <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-              <CiSearch />
-            </span>
-            <input
-              type="text"
-              name="search"
-              placeholder="Search by order id, product, category or others..."
-              className="block w-full pl-10 pr-3 py-2 border font-light border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab] text-xs"
-            />
-          </div>
-          {/* Select */}
-          <select
-            onChange={(e) =>
-              console.log("Change page size:", parseInt(e.target.value))
-            }
-            className="px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#3938ab] focus:border-[#3938ab]"
-          >
-            <option value="5">05</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select>
-          {/* Download Button */}
-          <div className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md bg-gray-50 text-xs text-gray-700 cursor-pointer hover:bg-gray-100">
-            <IoDownloadOutline />
-            <span>Download</span>
-          </div>
-        </div>
+        <Search2
+        className="mb-4"
+            setPerPage={setPerPage}
+            setSearchValue={setSearchValue}
+            searchValue={searchValue}
+          />
 
         <div className="relative overflow-x-auto">
           <table className="w-full mt-5 font-light text-xs text-left text-[#000000]">
@@ -75,7 +64,7 @@ const SellerRequest = () => {
             </thead>
 
             <tbody className="uppercase text-xs text-[#000000]  border-b">
-              {[1, 2, 3, 4, 5, 6, 7,8,9,10].map((d, i) => (
+              {sellers.map((d, i) => (
                 <tr key={i} className="border-b ">
                   <td
                     scope="row"
@@ -88,13 +77,13 @@ const SellerRequest = () => {
                     scope="row"
                     className="py-1 text-center px-4 font-light whitespace-nowrap"
                   >
-                    Narayana Firms
+                    {d.name}
                   </td>
                   <td
                     scope="row"
                     className="py-1 px-4 text-center font-light whitespace-nowrap"
                   >
-                    buymore@gmail.com{" "}
+                    {d.email}
                   </td>
                   <td
                     scope="row"
@@ -110,7 +99,7 @@ const SellerRequest = () => {
                       <span>
                         <CiSquareAlert />
                       </span>
-                      <span>Inactive</span>
+                      {d.payment}
                     </div>{" "}
                   </td>
                   <td
@@ -121,7 +110,7 @@ const SellerRequest = () => {
                       <span>
                         <GoDotFill />
                       </span>
-                      <span>Pending</span>
+                      {d.status}
                     </div>
                   </td>
                   <td

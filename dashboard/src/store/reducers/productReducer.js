@@ -56,6 +56,45 @@ export const get_products = createAsyncThunk(
     }
   );
 
+  export const update_product = createAsyncThunk(
+    "product/update_product",
+    async (product, { rejectWithValue, fulfillWithValue }) => {
+
+      try {
+        const { data } = await api.post('/product-update', product, 
+          {withCredentials: true,});
+        console.log(data);
+        return fulfillWithValue(data);
+      } catch (error) {
+        //console.log(error.response.data);
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+
+
+  export const product_image_update = createAsyncThunk(
+    "product/product_image_update",
+    async ({oldImage, newImage, productId}, { rejectWithValue, fulfillWithValue }) => {
+
+      try {
+
+        const formData = new FormData();
+        formData.append('oldImage', oldImage);
+        formData.append('newImage', newImage);
+        formData.append('productId', productId);
+        const { data } = await api.post('/product-image-update', formData, 
+          {withCredentials: true,});
+        console.log(data);
+        return fulfillWithValue(data);
+      } catch (error) {
+        //console.log(error.response.data);
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+
+
 export const productReducer = createSlice({
   name: 'product',
   initialState: {
@@ -96,6 +135,25 @@ export const productReducer = createSlice({
         state.product = payload.product;
       })
       
+      .addCase(update_product.pending, (state, { payload }) => {
+        state.loader = true;
+      })
+      .addCase(update_product.rejected, (state, { payload }) => {
+        state.loader = false;
+        state.errorMessage = payload?.error ;
+    })
+    
+      .addCase(update_product.fulfilled, (state, { payload }) => {
+        state.loader = false;
+        state.successMessage = payload.message;
+        state.product = payload.product;
+      })
+
+      .addCase(product_image_update.fulfilled, (state, { payload }) => {
+        
+        state.successMessage = payload.message;
+        state.product = payload.product;
+      })
   },
 });
 
