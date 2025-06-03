@@ -14,6 +14,10 @@ const SellerDetailsModal = ({ isOpen, onClose }) => {
         dispatch(get_seller(sellerId));
         },[sellerId]);
 
+        // useEffect(()=>{
+        // dispatch(get_seller(sellerId));
+        // },[sellerId]);
+
     if (!isOpen) return null;
 
     return (
