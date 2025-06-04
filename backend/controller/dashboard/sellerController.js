@@ -15,7 +15,7 @@ class sellerControllers{
                 
             } else {
                 const sellers = await sellerModel.find({status: "pending"}).
-                skip(skipPage).limit(parseInt(perPage)).populate("categoryId").sort({createdAt: -1});
+                skip(skipPage).limit(perPage).sort({createdAt: -1});
                 const totalSeller = await sellerModel.find({status: "pending"}).countDocuments();
                 responseReturn(res, 200, {sellers,totalSeller})
             }
