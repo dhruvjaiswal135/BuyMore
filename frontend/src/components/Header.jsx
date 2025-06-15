@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoIosMail } from "react-icons/io";
 import {
   FaPhoneAlt,
@@ -8,18 +8,23 @@ import {
   FaLinkedinIn,
   FaUser,
   FaLock,
+  FaHeart,
 } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { VscListSelection } from "react-icons/vsc";
+import { IoMdCart } from "react-icons/io";
 
 const Header = () => {
-  const user = false;
-  const [showSidebar, setShowSidebar] = React.useState(false);
+  const { pathname } = useLocation();
+  const user = true;
+  const [showSidebar, setShowSidebar] = useState(false);
+  const cart_count = 4;
+
   return (
     <div className="w-full bg-white">
-      {/* Top header strip */}
-      <div className="bg-[#3949ab] hidden md:block">
+      {/* 🔵 Top header strip (visible on md-lg+ only) */}
+      <div className="bg-[#3949ab] hidden min-md-lg:block">
         <div className="w-[85%] mx-auto">
           <div className="flex justify-between items-center h-[50px] text-white text-xs">
             {/* Contact Info */}
@@ -34,14 +39,22 @@ const Header = () => {
               </li>
             </ul>
 
-            {/* Right: Social + Language + Login */}
-            <div className="flex items-center gap-6 relative">
+            {/* Right side */}
+            <div className="flex items-center gap-6">
               {/* Social icons */}
               <div className="flex items-center gap-2">
-                <a href="#"><FaFacebookF /></a>
-                <a href="#"><FaTwitter /></a>
-                <a href="#"><FaInstagram /></a>
-                <a href="#"><FaLinkedinIn /></a>
+                <a href="#">
+                  <FaFacebookF />
+                </a>
+                <a href="#">
+                  <FaTwitter />
+                </a>
+                <a href="#">
+                  <FaInstagram />
+                </a>
+                <a href="#">
+                  <FaLinkedinIn />
+                </a>
               </div>
 
               {/* Language Selector */}
@@ -54,17 +67,16 @@ const Header = () => {
                   />
                   <IoMdArrowDropdown />
                 </div>
-
                 <ul className="absolute top-8 left-0 bg-black text-white text-sm p-2 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 w-24">
                   <li className="hover:text-gray-300">Hindi</li>
                   <li className="hover:text-gray-300">English</li>
                 </ul>
               </div>
 
-              {/* User Auth */}
+              {/* Auth */}
               {user ? (
                 <Link
-                  className="flex cursor-pointer items-center gap-2 text-sm text-white"
+                  className="flex items-center gap-2 text-sm text-white"
                   to="/dashboard"
                 >
                   <FaUser />
@@ -72,7 +84,7 @@ const Header = () => {
                 </Link>
               ) : (
                 <Link
-                  className="flex cursor-pointer items-center gap-2 text-sm text-white"
+                  className="flex items-center gap-2 text-sm text-white"
                   to="/login"
                 >
                   <FaLock />
@@ -84,35 +96,215 @@ const Header = () => {
         </div>
       </div>
 
-        {/* Main header */}
-        <div className="w-full bg-white">
-            <div className="w-[85%]  mx-auto">
-                <div className="h-[80px] flex justify-between 
-                items-center flex-wrap">
-                    <div className="w-full pt-4 ">
-                    <div className="flex justify-between items-center">
+      {/* 🔵 Main Header */}
+      {/* 🔵 Main Header */}
+      <div className="w-full bg-white shadow-sm">
+        <div className="w-[85%] mx-auto">
+          <div className="flex justify-between items-center h-[80px]">
+            {/* 🔹 Logo (Always visible) */}
+            <Link to="/">
+              <img
+                src="http://localhost:3000/images/Logo.png"
+                alt="Logo"
+                className="h-6 lg:h-7 w-auto"
+              />
+            </Link>
 
-                    
-                    <Link to="/" >
-                    <img
-                      className="w-auto h-6 lg:h-7"
-                      src="http://localhost:3000/images/Logo.png"
-                      alt="Logo"
-                    />
-                    </Link>
-                    <div className=" justify-center items-center
-                    bg-white text-black   
-                    cursor-pointer lg:hidden md-lg:flex" onClick={() => setShowSidebar(false)} >
-                        <span className="h-[20px]"><VscListSelection /></span>
-                    </div>
-                    </div>
-                    </div>
-                </div>
-
+            {/* 🔹 Desktop Nav (hidden on md-lg and smaller) */}
+            <div className="hidden min-md-lg:flex gap-8 text-sm font-semibold uppercase">
+              <Link
+                to="/"
+                className={`p-2 block ${
+                  pathname === "/" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Home
+              </Link>
+              <Link
+                to="/shop"
+                className={`p-2 block ${
+                  pathname === "/shop" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Shop
+              </Link>
+              <Link
+                to="/blog"
+                className={`p-2 block ${
+                  pathname === "/blog" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Blog
+              </Link>
+              <Link
+                to="/about"
+                className={`p-2 block ${
+                  pathname === "/about" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                About Us
+              </Link>
+              <Link
+                to="/contact"
+                className={`p-2 block ${
+                  pathname === "/contact" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Contact Us
+              </Link>
             </div>
 
+            <div className=" flex md-lg:hidden justify-center items-center gap-5">
+              <div className="flex justify-center gap-5">
+                <div
+                  className=" relative flex justify-center items-center
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#3949ab] text-white"
+                >
+                  <Link to="/cart">
+                    <span>
+                      <FaHeart />
+                    </span>
+                  </Link>
+                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cart_count}
+                  </span>
+                </div>
+                <div
+                  className=" relative flex justify-center items-center
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#3949ab] text-white"
+                >
+                  <Link to="/cart">
+                    <span>
+                      <IoMdCart />
+                    </span>
+                  </Link>
+                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {cart_count}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* 🔹 Hamburger Icon (visible only on md-lg and smaller) */}
+            <button
+              onClick={() => setShowSidebar(!showSidebar)}
+              className="min-md-lg:hidden text-2xl text-black"
+            >
+              <VscListSelection />
+            </button>
+          </div>
         </div>
-      
+      </div>
+
+      {/* 🔵 Mobile Sidebar Menu — visible only below 992px */}
+      {showSidebar && (
+        <div className="block min-md-lg:hidden bg-white w-full px-6 py-4 border-t shadow-md">
+          {/* 👤 User / Login */}
+          <div className="flex items-center gap-2 text-sm text-black">
+            <FaUser />
+            {user ? (
+              <Link to="/dashboard" onClick={() => setShowSidebar(false)}>
+                Dhruv Jaiswal
+              </Link>
+            ) : (
+              <Link to="/login" onClick={() => setShowSidebar(false)}>
+                Login
+              </Link>
+            )}
+          </div>
+          {/* 🌐 Language Selector */}
+          <div className="flex items-center gap-2 mb-4 text-sm text-black">
+            <img
+              className="w-5 h-auto"
+              src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/800px-Flag_of_India.svg.png"
+              alt="India Flag"
+            />
+            <span className="font-medium">Language:</span>
+            <select className="text-black bg-transparent outline-none border px-2 py-1 rounded text-sm">
+              <option value="en">English</option>
+              <option value="hi">Hindi</option>
+            </select>
+          </div>
+
+          {/* 🔽 Divider */}
+          <hr className="my-4 border-gray-300" />
+
+          <ul className="flex flex-col gap-4 text-sm font-semibold">
+            <li>
+              <Link
+                to="/"
+                onClick={() => setShowSidebar(false)}
+                className={`p-2 block ${
+                  pathname === "/" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/shop"
+                onClick={() => setShowSidebar(false)}
+                className={`p-2 block ${
+                  pathname === "/shop" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Shop
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/blog"
+                onClick={() => setShowSidebar(false)}
+                className={`p-2 block ${
+                  pathname === "/blog" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Blog
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                onClick={() => setShowSidebar(false)}
+                className={`p-2 block ${
+                  pathname === "/about" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                onClick={() => setShowSidebar(false)}
+                className={`p-2 block ${
+                  pathname === "/contact" ? "text-[#3949ab]" : "text-black"
+                }`}
+              >
+                Contact Us
+              </Link>
+            </li>
+          </ul>
+          <hr className="my-4 border-gray-300" />
+
+          {/* 🌐 Social Icons */}
+          <div className="flex justify-center gap-6 text-[#3949ab] mt-6 text-lg">
+            <a href="#" aria-label="Facebook">
+              <FaFacebookF />
+            </a>
+            <a href="#" aria-label="Twitter">
+              <FaTwitter />
+            </a>
+            <a href="#" aria-label="Instagram">
+              <FaInstagram />
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <FaLinkedinIn />
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
