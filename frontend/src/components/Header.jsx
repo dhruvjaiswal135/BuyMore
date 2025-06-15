@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IoIosMail } from "react-icons/io";
+import { IoIosArrowDown, IoIosMail } from "react-icons/io";
 import {
   FaPhoneAlt,
   FaFacebookF,
@@ -9,6 +9,7 @@ import {
   FaUser,
   FaLock,
   FaHeart,
+  FaList,
 } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation } from "react-router-dom";
@@ -22,11 +23,11 @@ const Header = () => {
   const cart_count = 4;
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-#003459">
       {/* 🔵 Top header strip (visible on md-lg+ only) */}
-      <div className="bg-[#3949ab] hidden min-md-lg:block">
+      <div className="bg-[#F5C675] hidden min-md-lg:block">
         <div className="w-[85%] mx-auto">
-          <div className="flex justify-between items-center h-[50px] text-white text-xs">
+          <div className="flex justify-between items-center h-[30px] text-#003459 text-xs">
             {/* Contact Info */}
             <ul className="flex items-center gap-6 font-normal">
               <li className="flex items-center gap-2 relative after:absolute after:right-[-12px] after:h-4 after:w-[1px] after:bg-[#f1f1f1]">
@@ -67,7 +68,7 @@ const Header = () => {
                   />
                   <IoMdArrowDropdown />
                 </div>
-                <ul className="absolute top-8 left-0 bg-black text-white text-sm p-2 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 w-24">
+                <ul className="absolute top-8 left-0 bg-#003459 text-#003459 text-sm p-2 rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 w-24">
                   <li className="hover:text-gray-300">Hindi</li>
                   <li className="hover:text-gray-300">English</li>
                 </ul>
@@ -76,7 +77,7 @@ const Header = () => {
               {/* Auth */}
               {user ? (
                 <Link
-                  className="flex items-center gap-2 text-sm text-white"
+                  className="flex items-center gap-2 text-sm text-#003459"
                   to="/dashboard"
                 >
                   <FaUser />
@@ -84,7 +85,7 @@ const Header = () => {
                 </Link>
               ) : (
                 <Link
-                  className="flex items-center gap-2 text-sm text-white"
+                  className="flex items-center gap-2 text-sm text-#003459"
                   to="/login"
                 >
                   <FaLock />
@@ -97,8 +98,7 @@ const Header = () => {
       </div>
 
       {/* 🔵 Main Header */}
-      {/* 🔵 Main Header */}
-      <div className="w-full bg-white shadow-sm">
+      <div className="w-full bg-#003459 shadow-sm">
         <div className="w-[85%] mx-auto">
           <div className="flex justify-between items-center h-[80px]">
             {/* 🔹 Logo (Always visible) */}
@@ -106,7 +106,7 @@ const Header = () => {
               <img
                 src="http://localhost:3000/images/Logo.png"
                 alt="Logo"
-                className="h-6 lg:h-7 w-auto"
+                className="h-12 lg:h-7 w-auto"
               />
             </Link>
 
@@ -115,7 +115,7 @@ const Header = () => {
               <Link
                 to="/"
                 className={`p-2 block ${
-                  pathname === "/" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Home
@@ -123,7 +123,7 @@ const Header = () => {
               <Link
                 to="/shop"
                 className={`p-2 block ${
-                  pathname === "/shop" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/shop" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Shop
@@ -131,7 +131,7 @@ const Header = () => {
               <Link
                 to="/blog"
                 className={`p-2 block ${
-                  pathname === "/blog" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/blog" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Blog
@@ -139,7 +139,7 @@ const Header = () => {
               <Link
                 to="/about"
                 className={`p-2 block ${
-                  pathname === "/about" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/about" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 About Us
@@ -147,7 +147,7 @@ const Header = () => {
               <Link
                 to="/contact"
                 className={`p-2 block ${
-                  pathname === "/contact" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/contact" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Contact Us
@@ -158,27 +158,27 @@ const Header = () => {
               <div className="flex justify-center gap-5">
                 <div
                   className=" relative flex justify-center items-center
-        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#3949ab] text-white"
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#F5C675] text-#003459"
                 >
                   <Link to="/cart">
                     <span>
                       <FaHeart />
                     </span>
                   </Link>
-                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-#003459 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {cart_count}
                   </span>
                 </div>
                 <div
                   className=" relative flex justify-center items-center
-        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#3949ab] text-white"
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#F5C675] text-#003459"
                 >
                   <Link to="/cart">
                     <span>
                       <IoMdCart />
                     </span>
                   </Link>
-                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-#003459 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
                     {cart_count}
                   </span>
                 </div>
@@ -188,7 +188,7 @@ const Header = () => {
             {/* 🔹 Hamburger Icon (visible only on md-lg and smaller) */}
             <button
               onClick={() => setShowSidebar(!showSidebar)}
-              className="min-md-lg:hidden text-2xl text-black"
+              className="min-md-lg:hidden text-2xl text-#003459"
             >
               <VscListSelection />
             </button>
@@ -198,9 +198,9 @@ const Header = () => {
 
       {/* 🔵 Mobile Sidebar Menu — visible only below 992px */}
       {showSidebar && (
-        <div className="block min-md-lg:hidden bg-white w-full px-6 py-4 border-t shadow-md">
+        <div className="block min-md-lg:hidden bg-#003459 w-full px-6 py-4 border-t shadow-md">
           {/* 👤 User / Login */}
-          <div className="flex items-center gap-2 text-sm text-black">
+          <div className="flex items-center gap-2 text-sm text-#003459">
             <FaUser />
             {user ? (
               <Link to="/dashboard" onClick={() => setShowSidebar(false)}>
@@ -213,14 +213,14 @@ const Header = () => {
             )}
           </div>
           {/* 🌐 Language Selector */}
-          <div className="flex items-center gap-2 mb-4 text-sm text-black">
+          <div className="flex items-center gap-2 mb-4 text-sm text-#003459">
             <img
               className="w-5 h-auto"
               src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/800px-Flag_of_India.svg.png"
               alt="India Flag"
             />
             <span className="font-medium">Language:</span>
-            <select className="text-black bg-transparent outline-none border px-2 py-1 rounded text-sm">
+            <select className="text-#003459 bg-transparent outline-none border px-2 py-1 rounded text-sm">
               <option value="en">English</option>
               <option value="hi">Hindi</option>
             </select>
@@ -235,7 +235,7 @@ const Header = () => {
                 to="/"
                 onClick={() => setShowSidebar(false)}
                 className={`p-2 block ${
-                  pathname === "/" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Home
@@ -246,7 +246,7 @@ const Header = () => {
                 to="/shop"
                 onClick={() => setShowSidebar(false)}
                 className={`p-2 block ${
-                  pathname === "/shop" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/shop" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Shop
@@ -257,7 +257,7 @@ const Header = () => {
                 to="/blog"
                 onClick={() => setShowSidebar(false)}
                 className={`p-2 block ${
-                  pathname === "/blog" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/blog" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Blog
@@ -268,7 +268,7 @@ const Header = () => {
                 to="/about"
                 onClick={() => setShowSidebar(false)}
                 className={`p-2 block ${
-                  pathname === "/about" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/about" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 About Us
@@ -279,7 +279,7 @@ const Header = () => {
                 to="/contact"
                 onClick={() => setShowSidebar(false)}
                 className={`p-2 block ${
-                  pathname === "/contact" ? "text-[#3949ab]" : "text-black"
+                  pathname === "/contact" ? "text-[#F5C675]" : "text-#003459"
                 }`}
               >
                 Contact Us
@@ -289,7 +289,7 @@ const Header = () => {
           <hr className="my-4 border-gray-300" />
 
           {/* 🌐 Social Icons */}
-          <div className="flex justify-center gap-6 text-[#3949ab] mt-6 text-lg">
+          <div className="flex justify-center gap-6 text-[#F5C675] mt-6 text-lg">
             <a href="#" aria-label="Facebook">
               <FaFacebookF />
             </a>
@@ -305,6 +305,34 @@ const Header = () => {
           </div>
         </div>
       )}
+
+      {/* <div className="w-[85%] mx-auto pt-6">
+        <div className="flex w-full flex-wrap md-lg:gap-8">
+          <div className="w-3/12 md-lg:w-full">
+            <div className="bg-#003459 relative">
+              <div className="h-[50px] rounded-md bg-[#F5C675] text-#003459 flex items-center justify-center
+              md-lg:justify-between md-lg:px-6 gap-3 font-bold text-sm cursor-pointer">
+                <div className="flex items-center gap-3 justify-center">
+                  <span> <FaList/></span>
+                  <span> All Categories</span>
+
+
+                </div>
+                <span><IoIosArrowDown/></span>
+
+              </div>
+              
+            </div>
+
+          </div>
+
+        </div>
+
+      </div> */}
+
+      <div className="w-[85%] mx-auto pt-6">
+        <img src="http://localhost:3000/images/Banner.png" alt="" />
+      </div>
     </div>
   );
 };
