@@ -107,6 +107,7 @@ const Header = () => {
                 src="http://localhost:3000/images/Logo.png"
                 alt="Logo"
                 className="h-12 lg:h-7 w-auto"
+                // className="h-12 lg:h-7 w-auto"
               />
             </Link>
 
