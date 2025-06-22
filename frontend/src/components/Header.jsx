@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoIosArrowDown, IoIosMail } from "react-icons/io";
 import {
   FaPhoneAlt,
@@ -20,14 +20,15 @@ const Header = () => {
   const { pathname } = useLocation();
   const user = true;
   const [showSidebar, setShowSidebar] = useState(false);
+  const [categoryShow, setCategoryShow] = useState(false);
   const cart_count = 4;
 
   return (
     <div className="w-full bg-#003459">
       {/* 🔵 Top header strip (visible on md-lg+ only) */}
-      <div className="bg-[#F5C675] hidden min-md-lg:block">
+      <div className="bg-[#002A48] hidden min-md-lg:block">
         <div className="w-[85%] mx-auto">
-          <div className="flex justify-between items-center h-[30px] text-#003459 text-xs">
+          <div className="flex justify-between items-center h-[30px] text-white text-xs">
             {/* Contact Info */}
             <ul className="flex items-center gap-6 font-normal">
               <li className="flex items-center gap-2 relative after:absolute after:right-[-12px] after:h-4 after:w-[1px] after:bg-[#f1f1f1]">
@@ -96,7 +97,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-{/* 🔵 Main Header */}
+      {/* 🔵 Main Header */}
       {/* 🔵 Main Header */}
       <div className="w-full bg-#003459 shadow-sm">
         <div className="w-[85%] mx-auto">
@@ -158,7 +159,7 @@ const Header = () => {
               <div className="flex justify-center gap-5">
                 <div
                   className=" relative flex justify-center items-center
-        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#F5C675] text-#003459"
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#002A48] text-white"
                 >
                   <Link to="/cart">
                     <span>
@@ -171,7 +172,7 @@ const Header = () => {
                 </div>
                 <div
                   className=" relative flex justify-center items-center
-        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#F5C675] text-#003459"
+        cursor-pointer w-[35px] h-[35px] rounded-full bg-[#002A48] text-white"
                 >
                   <Link to="/cart">
                     <span>
@@ -306,29 +307,37 @@ const Header = () => {
         </div>
       )}
 
-      {/* <div className="w-[85%] mx-auto pt-6">
+      <div className="w-[85%] mx-auto pt-6">
         <div className="flex w-full flex-wrap md-lg:gap-8">
           <div className="w-3/12 md-lg:w-full">
             <div className="bg-#003459 relative">
-              <div className="h-[50px] rounded-md bg-[#F5C675] text-#003459 flex items-center justify-center
-              md-lg:justify-between md-lg:px-6 gap-3 font-bold text-sm cursor-pointer">
+              <div
+              onClick={() => setCategoryShow(!categoryShow)}
+                className="h-[50px] rounded-md bg-[#002A48] text-white flex items-center justify-center
+              md-lg:justify-between md-lg:px-6 gap-3 font-bold text-sm cursor-pointer"
+              >
                 <div className="flex items-center gap-3 justify-center">
-                  <span> <FaList/></span>
+                  <span>
+                    {" "}
+                    <FaList />
+                  </span>
                   <span> All Categories</span>
-
-
                 </div>
-                <span><IoIosArrowDown/></span>
+                <span>
+                  <IoIosArrowDown />
+                </span>
+              </div>
+
+              <div className={`${categoryShow? 'h-0' : 'h-[400px]'}
+              overflow-hidden transition-all duration-300 ease-in-out md-lg:relative
+              absolute z-[99999] bg-white border-x`}>
 
               </div>
-              
+
             </div>
-
           </div>
-
         </div>
-
-      </div> */}
+      </div>
 
       <div className="w-[85%] mx-auto pt-6">
         <img src="http://localhost:3000/images/Banner.png" alt="" />
