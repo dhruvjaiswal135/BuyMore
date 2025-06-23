@@ -310,13 +310,13 @@ const Header = () => {
       <div className="w-[85%] mx-auto pt-6">
         <div className="flex w-full flex-wrap md-lg:gap-8">
           <div className="w-3/12 md-lg:w-full">
-            <div className="bg-#003459 relative">
+            <div className="bg-[#003459 relative">
               <div
               onClick={() => setCategoryShow(!categoryShow)}
                 className="h-[50px] rounded-md bg-[#002A48] text-white flex items-center justify-center
               md-lg:justify-between md-lg:px-6 gap-3 font-bold text-sm cursor-pointer"
               >
-                <div className="flex items-center gap-3 justify-center">
+                <div className="flex items-center gap-3 ">
                   <span>
                     {" "}
                     <FaList />
@@ -329,8 +329,8 @@ const Header = () => {
               </div>
 
               <div className={`${categoryShow? 'h-0' : 'h-[400px]'}
-              overflow-hidden transition-all duration-300 ease-in-out md-lg:relative
-              absolute z-[99999] bg-white border-x`}>
+              overflow-hidden transition-all duration-300 ease-in-out 
+              absolute  bg-white border-x md:absolute md:top-full md:left-0 w-full z-50`}>
 
               </div>
 
