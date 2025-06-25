@@ -22,6 +22,18 @@ const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [categoryShow, setCategoryShow] = useState(false);
   const cart_count = 4;
+  const categories = [
+    "Cats",
+    "Dogs",
+    "Birds",
+    "Fish",
+    "Reptiles",
+    "Small Pets",
+    "Farm Animals",
+    "Exotic Pets",
+  ]
+  const [searchValue, setSearchValue] = useState("");
+  const [category, setCategory] = useState("");
 
   return (
     <div className="w-full bg-#003459">
@@ -97,7 +109,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {/* 🔵 Main Header */}
       {/* 🔵 Main Header */}
       <div className="w-full bg-#003459 shadow-sm">
         <div className="w-[85%] mx-auto">
@@ -331,10 +342,70 @@ const Header = () => {
               <div className={`${categoryShow? 'h-0' : 'h-[400px]'}
               overflow-hidden transition-all duration-300 ease-in-out 
               absolute  bg-white border-x md:absolute md:top-full md:left-0 w-full z-50`}>
-
+                <ul>
+                  {
+                    categories.map((item, index) => {
+                      return(
+                      <li
+                        key={index}
+                        className="p-3 border-b hover:bg-gray-100 cursor-pointer"
+                      >
+                        <Link to={`/category/${item.toLowerCase()}`}>
+                          {item}
+                        </Link>
+                      </li>
+                    )})
+                  }
+                </ul>
               </div>
 
             </div>
+          </div>
+
+          <div className="w-9/12 pl-8 md-lg:pl-0 md-lg:w-full ">
+            <div className="flex flex-wrap w-full
+             items-center justify-between md-lg:gap-6 ">
+              <div className="w-8/12 md-lg:w-full">
+              <div className="flex border pl-6 h-[50px] items-center relative gap-6">
+                <div className="relative after:absolute after:h-[25px] after:w-[1px] after: 
+                after:right-[15px] md:hidden">
+                  <select className="outline-0 border py-1 bg-white w-[150px] text-[#003459] justify-center px-4 h-full text-sm font-semibold">
+                    <option value="all">All Categories</option>
+                    {categories.map((item, index) => (
+                      <option key={index} value={item.toLowerCase()}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+
+                </div>
+                <input
+                onChange={(e)=> setSearchValue()}
+                  type="text"
+                  placeholder="Search for products..."
+                  className="w-full relative h-full outline-0 px-3 text-sm text-[#003459] font-semibold"
+                  name='' 
+                  id=''/>
+                <button className="absolute right-2 bg-[#003459] px-8 h-full font-semibold uppercase
+                text-white">Search</button>
+              </div>
+
+              </div>
+
+              <div className="w-4/12 block md-lg:w-full md-lg:hidden pl-2 md-lg:pl-0">
+              <div className="w-full flex justify-end items-center md-lg:justify-start gap-3">
+                <div className="w-[48px] h-[48px] rounded-full flex justify-center items-center">
+                  <span><FaPhoneAlt/></span>
+                </div>
+                <div className="flex justify-end flex-col gap-1">
+                  <h2 className="text-sm font-medium text-slate-700"> +1 234 567 890</h2>
+                  <span className="text-xs">Support 24/7</span>
+                </div>
+              </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
