@@ -46,7 +46,15 @@ const Categories = () => {
     }
     return (
         <div className='w-[87%] mx-auto relative'>
-            
+            <div className='w-full'>
+                <div className='text-center flex justify-center items-center
+                flex-col text-4xl text-slate-600 font bold relative pb-[45px]'>
+                    <h2>Top Categories</h2>
+                    <div className=' w-[100px] h-[2px] bg-[#059473] mt-4'>
+                    </div>
+
+                </div>
+                </div>
                             <Carousel
                             autoPlay={true}
                             infinite={true}
@@ -60,7 +68,7 @@ const Categories = () => {
                                     <img src={`http://localhost:3000/images/${i}.png`} alt =""/>
                                     <div className='absolute bottom-6 w-full mx-auto font-semibold 
                                     left-0 flex justify-center items-center'>
-                                        <span>{c}</span>
+                                        <span className=' py-[2px]  px-[6px] bg-[#3330305d] text-white'>{c}</span>
 
                                     </div>
                                 </div>
