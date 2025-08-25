@@ -1,7 +1,7 @@
 # BuyMore - Multi-Vendor E-commerce Platform
 
 <div align="center">
-  <img src="./frontend/public/images/Logo.png" alt="BuyMore Logo" width="200"/>
+  <img src="https://res.cloudinary.com/dumevattk/image/upload/v1756152832/e91bd69c-68ef-4de3-b988-d28c3528d4f3.png" alt="BuyMore Logo" width="200"/>
   
   [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
   [![React](https://img.shields.io/badge/React-19.0-blue.svg)](https://reactjs.org/)
