@@ -1,8 +1,9 @@
-import React from "react";
+
 import { FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {get_seller} from "../../store/reducers/sellerReducer";
 
 const SellerDetailsModal = ({ isOpen, onClose }) => {
 
@@ -13,10 +14,6 @@ const SellerDetailsModal = ({ isOpen, onClose }) => {
     useEffect(()=>{
         dispatch(get_seller(sellerId));
         },[sellerId]);
-
-        // useEffect(()=>{
-        // dispatch(get_seller(sellerId));
-        // },[sellerId]);
 
     if (!isOpen) return null;
 
@@ -47,23 +44,23 @@ const SellerDetailsModal = ({ isOpen, onClose }) => {
                         <div className="space-y-1 text-sm">
                             <div className="flex justify-between">
                                 <span className="font-bold text-gray-600">Name:</span>
-                                <span className="text-gray-800">John Doe</span>
+                                <span className="text-gray-800">{seller.name}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="font-bold text-gray-600">Email:</span>
-                                <span className="text-gray-800">john.doe@example.com</span>
+                                <span className="text-gray-800">{seller?.email}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="font-bold text-gray-600">Role:</span>
-                                <span className="text-gray-800">Seller</span>
+                                <span className="text-gray-800">{seller?.role}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="font-bold text-gray-600">Status:</span>
-                                <span className="text-green-600">Active</span>
+                                <span className="text-green-600">{seller?.status}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="font-bold text-gray-600">Payment:</span>
-                                <span className="text-green-600">Paid</span>
+                                <span className="text-green-600">{seller?.paymentStatus}</span>
                             </div>
                         </div>
                     </div>

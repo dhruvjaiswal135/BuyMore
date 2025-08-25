@@ -20,10 +20,11 @@ export const admin_login = createAsyncThunk(
   }
 );
 
-export const seller_register = createAsyncThunk(      // for seller register
+// for seller register
+export const seller_register = createAsyncThunk(      
   "auth/seller_register",
   async (info, { rejectWithValue, fulfillWithValue }) => {
-    console.log(info);
+    //console.log(info);
     try {
       const { data } = await api.post("/seller-register", info, {
         withCredentials: true,
